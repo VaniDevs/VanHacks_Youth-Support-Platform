@@ -1,9 +1,9 @@
 /**
  */
-import {STAFF_LOGIN, STAFF_GET, STAFF_LOGOUT} from "../actions/http/NetworkAction"
+import {USER_LOGIN, USER_GET, USER_LOGOUT} from "../actions/http/NetworkAction"
 
 function _extractStaffData(action) {
-    if (action.payload.data.metadata.err) {
+    if (action.payload.data.err) {
         return null;
     } else {
         return action.payload.data.data.staff;
@@ -12,13 +12,13 @@ function _extractStaffData(action) {
 
 export default function(state = null, action) {
     switch (action.type) {
-        case STAFF_LOGIN:
-        case STAFF_GET:
+        case USER_LOGIN:
+        case USER_GET:
             return _extractStaffData(action);
             // console.log("reducer staff_get:");
             // console.log(action.payload);
             // return action.payload.data.data.staff;
-        case STAFF_LOGOUT:
+        case USER_LOGOUT:
             return null;
     }
     return state;

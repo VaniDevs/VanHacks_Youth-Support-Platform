@@ -8,10 +8,15 @@ module.exports.get = {
       next()
     },
     (req, res, next) => {
-      res.$locals.writeData({
-        user: req.$injection.user
-      })
-      next()
+      if (req.$injection.user) {
+        res.$locals.writeData({
+          user: req.$injection.user
+        })
+        next()
+      } else {
+        next(new Error('User not logined'))
+      }
+
     }
   ]
 };
@@ -20,10 +25,10 @@ module.exports.login = {
   method: 'post',
   middlewares: [
     (req, res, next) => {
-      const { username, password } = req.body
-      User.findOne({ username, password }).exec((err, user) => {
+      const {username, password} = req.body
+      User.findOne({username, password}).exec((err, user) => {
         if (user) {
-          res.$locals.writeData({ user })
+          res.$locals.writeData({user})
           req.$session.setUser(user)
           next()
         } else {
@@ -38,8 +43,8 @@ module.exports.register = {
   method: 'post',
   middlewares: [
     (req, res, next) => {
-      const { username, password } = req.body
-      User.findOne({ username }).exec((err, user) => {
+      const {username, password} = req.body
+      User.findOne({username}).exec((err, user) => {
         if (user) {
           next(new Error('Username has already been registered'))
         } else {
@@ -54,7 +59,7 @@ module.exports.register = {
     },
     (req, res, next) => {
       const user = req.$injection.user
-      res.$locals.writeData({ user })
+      res.$locals.writeData({user})
       req.$session.setUser(user)
       next()
     }

@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import TopNavBar from '../components/TopNavBar'
 import SideBar from '../components/SideBar'
 import InfoPage from './info/InfoPage'
+import SearchHomePage from './search/SearchHome'
 
 
 
@@ -21,9 +22,9 @@ export default class HomePage extends Component {
                     </nav>
                     <div id="page-wrapper" style={{minHeight : "490px"}}>
                         <Switch>
-                            <Route path="/" component={InfoPage} />
-                          <Route path="/home/search" component={InfoPage} />
 
+                          <Route path="/home/search" component={SearchHomePage} />
+                          <Route path="/" component={InfoPage} />
                         </Switch>
                     </div>
                         </div>
