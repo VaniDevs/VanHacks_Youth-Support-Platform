@@ -1,4 +1,4 @@
-const Resource = require('../../models/resource');
+const Resource = require('../../models/entities/program');
 
 module.exports.search = {
   method: 'get',

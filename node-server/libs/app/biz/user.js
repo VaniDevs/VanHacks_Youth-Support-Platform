@@ -1,4 +1,4 @@
-const User = require('../../models/user')
+const User = require('../../models/entities/user')
 
 module.exports.get = {
   method: 'get',

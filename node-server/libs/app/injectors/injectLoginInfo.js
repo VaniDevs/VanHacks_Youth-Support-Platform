@@ -1,5 +1,5 @@
 const async = require('async'),
-    User = require('../../models/user')
+    User = require('../../models/entities/user')
 
 module.exports = (req, res, next) => {
   async.parallel([
