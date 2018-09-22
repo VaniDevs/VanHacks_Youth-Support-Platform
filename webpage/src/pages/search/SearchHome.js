@@ -4,8 +4,10 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userLogin } from '../../actions/http/NetworkAction'
+import { userLogin, searchResources } from '../../actions/http/NetworkAction'
 import {renderTextField} from '../../helper/FormHelper'
+
+
 import ResultList from './ResultList'
 
 class SearchHomePage extends Component {
@@ -22,10 +24,15 @@ class SearchHomePage extends Component {
       console.log('submit callback');
     });
   }
+  componentDidMount() {
+    const { handleSubmit } = this.props;
+    this.props.searchResources();
+  }
 
   render () {
-    const { handleSubmit } = this.props;
-
+    console.log('----aaa----');
+    console.log(this.props.searchResults);
+    console.log('----bbb----');
     return (
         <div>
           <div>Search Page</div>
@@ -51,9 +58,11 @@ class SearchHomePage extends Component {
   }
 }
 
+function mapStateToProps({searchResults}) {
+  return {searchResults};
+}
 
-
-export default connect(null,{ staffLogin: userLogin })(SearchHomePage)
+export default connect(mapStateToProps,{ searchResources })(SearchHomePage)
 
 
 

@@ -7,6 +7,7 @@ import moment from 'moment'
 export const USER_LOGIN = "http_user_login";
 export const USER_GET = "http_user_get";
 export const USER_LOGOUT = "http_user_logout";
+export const RESOURCE_SEARCH = "http_resource_search"
 
 
 // export const CONFIG_QUERY = 'http_config_query';
@@ -46,7 +47,7 @@ export function userLogin(username, password, callback) {
 }
 
 export function userGet(callback) {
-  const request = axios.get(`${ROOT_URL}/biz/biz/user/get`);
+  const request = axios.get(`${ROOT_URL}/biz/user/get`);
 
   request.then((response) => {
     if (response.data.err) {
@@ -68,10 +69,20 @@ export function userGet(callback) {
 }
 
 export function userLogout(callback) {
-  const request = axios.post(`${ROOT_URL}/user/logout`);
+  const request = axios.post(`${ROOT_URL}/biz/user/logout`);
   generateInvokeNetworkCallback(request, callback);
   return {
     type: USER_LOGOUT,
+    payload: request
+  };
+}
+
+
+export function searchResources(callback) {
+  const request = axios.get(`${ROOT_URL}/biz/resource/search`);
+  generateInvokeNetworkCallback(request, callback);
+  return {
+    type: RESOURCE_SEARCH,
     payload: request
   };
 }
