@@ -1,0 +1,15 @@
+.student-list-page .student-table table {
+    text-align: center;
+}
+
+.student-list-page table td {
+    vertical-align: middle !important;
+}
+
+.student-list-page .student-table {
+    padding-bottom: 1em;
+}
+
+.student-list-page .student-group-select-container {
+    margin-bottom: 1em;
+}
