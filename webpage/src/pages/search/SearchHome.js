@@ -9,6 +9,8 @@ import {renderTextField} from '../../helper/FormHelper'
 
 
 import ResultList from './ResultList'
+// import {AutoComplete} from 'primereact/autocomplete';
+// import {Button} from 'primereact/button';
 
 class SearchHomePage extends Component {
   constructor(props) {
@@ -35,7 +37,7 @@ class SearchHomePage extends Component {
     console.log('----bbb----');
     return (
         <div>
-          <div>Search Page</div>
+          <div>One Punch - Youth Support</div>
           <div>
             <input type="text"></input><button>search</button>
           </div>
