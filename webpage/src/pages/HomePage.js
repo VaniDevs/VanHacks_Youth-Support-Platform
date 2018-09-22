@@ -20,7 +20,7 @@ export default class HomePage extends Component {
                         <TopNavBar/>
                         {/*<SideBar/>*/}
                     </nav>
-                    <div id="page-wrapper" style={{minHeight : "490px"}}>
+                    <div style={{minHeight : "490px"}}>
                         <Switch>
 
                           <Route path="/home/search" component={SearchHomePage} />
