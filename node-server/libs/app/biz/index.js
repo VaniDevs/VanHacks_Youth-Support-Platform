@@ -1,4 +1,5 @@
 module.exports = {
-  user : require('./user')
-}
+  user : require('./user'),
+  resource: require('./resource')
+};
 

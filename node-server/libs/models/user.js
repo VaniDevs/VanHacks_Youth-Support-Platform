@@ -9,7 +9,7 @@ const mongoose = require('mongoose'),
 /**
  * @class models/user
  * @since 2.0.0
- * @description 用户
+ * @description User
  */
 var schema = Schema({
   username: String,
