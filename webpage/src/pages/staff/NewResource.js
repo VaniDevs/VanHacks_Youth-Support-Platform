@@ -52,7 +52,6 @@ class NewResourcePage extends Component {
                             component={renderTextField}
                         />
                       </div>
-
                       <div className="form-group">
                         <button type="submit" className="login-btn btn btn-lg btn-success btn-block">Add</button>
                       </div>
