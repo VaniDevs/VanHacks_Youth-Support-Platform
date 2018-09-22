@@ -1,10 +1,7 @@
 
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { userLogin } from '../../actions/http/NetworkAction'
-import {renderTextField} from '../../helper/FormHelper'
 require('./ResourceDetail.css');
 
 
@@ -46,12 +43,7 @@ function validate(values) {
   return {};
 }
 
-export default reduxForm({
-  validate
-})(
-    // LoginPage
-    connect(null,{ })(ResourceDetailPage)
-);
+export default connect(null,{ })(ResourceDetailPage);
 
 
 

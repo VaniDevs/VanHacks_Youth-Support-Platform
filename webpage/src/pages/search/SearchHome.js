@@ -1,18 +1,12 @@
 
 
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { searchResources } from '../../actions/http/NetworkAction'
 import {clearSearchResults} from '../../actions/page/SearchHome'
 
-import {renderTextField} from '../../helper/FormHelper'
-
 
 import ResultList from './ResultList'
-// import {AutoComplete} from 'primereact/autocomplete';
-// import {Button} from 'primereact/button';
 
 class SearchHomePage extends Component {
   constructor(props) {
@@ -44,9 +38,7 @@ class SearchHomePage extends Component {
               results={this.props.searchResults}
           />
         </div>
-
     )
-
   }
 }
 
