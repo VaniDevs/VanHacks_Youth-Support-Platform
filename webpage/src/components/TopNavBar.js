@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { staffGet, staffLogout } from '../actions/http/NetworkAction'
+import { userGet, userLogout } from '../actions/http/NetworkAction'
 import { connect } from 'react-redux';
 
 class TopNavBar extends Component {
     onClickLogout () {
         console.log('click logout');
-        // this.props.staffLogout();
+        // this.props.userLogout();
     }
     onClickChangePassword () {
         console.log('click change password');
         //TODO
-        // this.props.staffGet((a) => {
-        //     console.log('staffGet:');
+        // this.props.userGet((a) => {
+        //     console.log('userGet:');
         //     console.log(a);
         // });
     }
@@ -63,4 +63,4 @@ function mapStateToProps({loginStaff}) {
     return {loginStaff};
 }
 
-export default connect(mapStateToProps, {staffGet, staffLogout})(TopNavBar);
+export default connect(mapStateToProps, {staffGet: userGet, staffLogout: userLogout})(TopNavBar);

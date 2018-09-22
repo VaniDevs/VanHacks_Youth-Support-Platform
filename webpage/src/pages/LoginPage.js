@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { staffLogin } from '../actions/http/NetworkAction'
+import { userLogin } from '../actions/http/NetworkAction'
 import {renderTextField} from '../helper/FormHelper'
 require('./LoginPage.css');
 
@@ -78,7 +78,7 @@ export default reduxForm({
     form: 'LoginForm'
 })(
     // LoginPage
-    connect(null,{ staffLogin })(LoginPage)
+    connect(null,{ staffLogin: userLogin })(LoginPage)
 );
 
 

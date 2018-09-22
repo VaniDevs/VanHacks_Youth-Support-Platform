@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { staffLogin } from '../../actions/http/NetworkAction'
+import { userLogin } from '../../actions/http/NetworkAction'
 import {renderTextField} from '../../helper/FormHelper'
-
+import ResultList from './ResultList'
 
 class SearchHomePage extends Component {
   constructor(props) {
@@ -27,7 +27,25 @@ class SearchHomePage extends Component {
     const { handleSubmit } = this.props;
 
     return (
-        <div>Search Page</div>
+        <div>
+          <div>Search Page</div>
+          <div>
+            <input type="text"></input><button>search</button>
+          </div>
+          <ResultList
+              results={[{
+                _id: '1',
+                title: "aaa"
+              }, {
+                _id: '2',
+                title: "aaa"
+              }, {
+                _id: '3',
+                title: "aaa"
+              }]}
+          />
+        </div>
+
     )
 
   }
@@ -35,7 +53,7 @@ class SearchHomePage extends Component {
 
 
 
-export default connect(null,{ staffLogin })(SearchHomePage)
+export default connect(null,{ staffLogin: userLogin })(SearchHomePage)
 
 
 

@@ -3,6 +3,7 @@
 import {USER_LOGIN, USER_GET, USER_LOGOUT} from "../actions/http/NetworkAction"
 
 function _extractStaffData(action) {
+    return action;
     if (action.payload.data.err) {
         return null;
     } else {

@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import HomePage from './HomePage'
 import LoginPage from './LoginPage'
-import {staffGet} from '../actions/http/NetworkAction'
+import {userGet} from '../actions/http/NetworkAction'
 
 import { connect } from 'react-redux';
 
@@ -35,4 +35,4 @@ function mapStateToProps({loginStaff}) {
     return { loginStaff };
 }
 
-export default connect(mapStateToProps, {staffGet})(AppView);
+export default connect(mapStateToProps, {staffGet: userGet})(AppView);
