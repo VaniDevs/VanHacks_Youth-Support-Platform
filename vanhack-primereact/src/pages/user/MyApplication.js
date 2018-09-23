@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, {Component} from 'react';
 import dot from 'dot-prop'
 import {Link} from 'react-router-dom';
+import {DataTable} from 'primereact/datatable';
+import './MyApplication.css'
 
 export default class MyApplicationPage extends Component {
   constructor() {
@@ -36,15 +38,14 @@ export default class MyApplicationPage extends Component {
       const l = a.programRef;
       return (
           <div key={l._id}>
-            <span>{l.name}</span>
-            <Link to={`/program/detail/${l._id}`}>Link</Link>
+            <Link to={`/program/detail/${l._id}`}>{l.name}</Link>
           </div>
       );
     });
     return (
-        <div>
-          <div>My Application</div>
-          <div>{a}</div>
+        <div className="my-application">
+          <div className="introduction">My Application</div>
+          <div className="table-container">{a}</div>
         </div>
     );
   }

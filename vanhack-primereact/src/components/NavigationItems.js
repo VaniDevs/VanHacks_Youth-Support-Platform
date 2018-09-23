@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import './NavigationItem.css'
 
 export default class NavigationItems extends Component {
   async onClickLogout() {
@@ -20,7 +21,7 @@ export default class NavigationItems extends Component {
               <span>
                 <Link to="/user/my_application">My Application</Link>
               </span>
-              <button onClick={this.onClickLogout.bind(this)}>Logout</button>
+              <button className="logout-btn" onClick={this.onClickLogout.bind(this)}>Logout</button>
             </span>
         );
       } else if (user.type === 1) {
@@ -44,7 +45,7 @@ export default class NavigationItems extends Component {
               <span>
                 <Link to="/organization/my_program">My Program</Link>
               </span>
-            <button onClick={this.onClickLogout.bind(this)}>Logout</button>
+            <button className="logout-btn" onClick={this.onClickLogout.bind(this)}>Logout</button>
           </span>
         );
       }
