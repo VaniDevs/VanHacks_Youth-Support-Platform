@@ -12,11 +12,17 @@ const mongoose = require('mongoose'),
  * @description User
  */
 var schema = Schema({
+  user_id: String,
   username: String,
   /** @memberof models/user.prototype */
   password: { type: String, select: false },
   name: String, //
   gender: String,
+  email: String,
+  phone: String,
+  birth_date: Date,
+  education_level: Number, // 0: Pre-school 1:Primary School 2: Middle School 3: High School 4:College 5: Not educated
+  address: String,
 }, {
   timestamps: true
 })
@@ -47,5 +53,5 @@ schema.pre('save', function (next) {
 })
 */
 
-const User = mongoose.model('user', schema)
-module.exports = User
+
+module.exports = mongoose.model('user', schema);

@@ -1,6 +1,5 @@
-const Resource = require('../../models/resource');
+const Resource = require('../../models/entities/program');
 const mongoose = require('mongoose')
-
 
 module.exports.search = {
   method: 'get',
