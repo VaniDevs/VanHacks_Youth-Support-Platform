@@ -11,17 +11,18 @@ class RegisterPage extends Component {
   constructor() {
     super();
     this.state = {
+      alertVisible: false,
+
+      // userInfo
       username: "",
       password: "",
       passwordAgain: "",
       type: 0,
-      alertVisible: false,
       name: "",
       email: "",
       phone: "",
       birthday: null,
       address: "",
-
 
       // teen
       teen_school: "",
@@ -40,6 +41,12 @@ class RegisterPage extends Component {
       organization_web: '',
 
     };
+  }
+
+  showAlert() {
+    this.setState({
+      alertVisible: true,
+    })
   }
 
   async onClickSubmit() {
@@ -77,6 +84,19 @@ class RegisterPage extends Component {
       };
     }
     console.log(info);
+
+    const a = await axios.post(`${window.SERVER_ROOT_URL}/biz/user/login`, info);
+    // TODO
+    const err = dot.get(a, 'data.err');
+    if (err) {
+      this.showAlert();
+    } else {
+      const user = dot.get(a, 'data.user');
+      if (this.props.onRegister && user) {
+        this.props.onRegister(user);
+      }
+      this.props.history.push('/');
+    }
   }
 
   onChangeText(e, key) {
@@ -136,6 +156,11 @@ class RegisterPage extends Component {
     // TODO name, email, phone, birthday, address
     return (
         <div>
+          <Dialog header="Alert" visible={this.state.alertVisible} width="350px" modal={true} onHide={(e) => this.setState({alertVisible: false})}>
+            Username or Password Error!
+          </Dialog>
+
+
           <div>
             register
           </div>
