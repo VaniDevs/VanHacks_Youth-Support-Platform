@@ -9,23 +9,46 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-var userInfo = {
-    type: 3,
-    mails: 'lijixing3377@gmail.com',
-    name: 'Leo',
-    programName: 'Hello',
-    url: 'www.google.com'
-}
-
 module.exports.sendEmail = (users, title, content) => {
-  // TODO implement here: 向emailList中的所有人发送标题为title内容为content的邮件
+    for (let userInfo in users) {
+        mailOptions = {
+            from: 'weekendfuelbag2018@gmail.com', // login user must equel to this user
+            to: userInfo.mails,
+            subject: title,
+            html: '<p>Hi ' + userInfo.name + ', </p><p>' + content + '</p>'
+        };
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Message sent: ' + info.response);
+        });
+    }
 };
 
-module.exports.sendTeenNotification = (users/*TODO Add other parameter here*/) => {
-  // TODO 发送通知（需要帮助的）小孩，他们关注的类别中有新活动的邮件
-};
+module.exports.sendTeenNotification = (users) => {
+    for (let userInfo in users) {
+        mailOptions = {
+            from: 'weekendfuelbag2018@gmail.com', // login user must equel to this user
+            to: userInfo.mails,
+            subject: 'Notification: New resources are available!',
+            html: '<p>Dear ' + userInfo.name + ',</p><p>We have some new resources for you near your location.</p>' +
+            '<p>1. Boy Scouts Of Canada Fraser Valley Council</p><p>Programs for youth in municipalities and' +
+            ' areas in the territory covered by the council. Programs include group and individual activities' +
+            ' that emphasize experiential learning with emphasis on the outdoors. Training programs for adult' +
+            ' members to teach new skills and enhance existing skills.</p><p>2. Canada Ice Dance Theatre' +
+            ' Association</p><p>Share School for youth, kids and adults. Performance program-general audie' +
+            ' nce shows, community skating events storytelling on ice for Schools</p><p>Weekend Fuelbag</p>'
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                return console.log(error);
+            }
+            console.log('Message sent: ' + info.response);
+        });
+    }};
 
-module.exports.sendOrganizationNotification = (users/*TODO Add other parameter here*/) => {
+module.exports.sendOrganizationNotification = (users) => {
     for (let userInfo in users) {
         mailOptions = {
             from: 'weekendfuelbag2018@gmail.com', // login user must equel to this user
