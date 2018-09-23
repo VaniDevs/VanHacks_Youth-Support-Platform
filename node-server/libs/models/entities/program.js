@@ -18,4 +18,4 @@ const schema = Schema({
 });
 
 
-module.exports = mongoose.model('program', schema);
+module.exports = mongoose.model('resource', schema);

@@ -27,7 +27,7 @@ var schema = Schema({
   volunteerInfo: {
     gender: String,
     education_level: Number, // 0: Pre-school 1:Primary School 2: Middle School 3: High School 4:College 5: Not educated
-    field:[number], // 1. Administration/office work 2. Coaching/mentoring 3. Technical 4. Counselling/Listening 5. Events/Stewarding
+    field:[Number], // 1. Administration/office work 2. Coaching/mentoring 3. Technical 4. Counselling/Listening 5. Events/Stewarding
     available:[Object],
   },
   organizationInfo: {
