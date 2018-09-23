@@ -11,7 +11,8 @@ import NewResourcePage from './pages/staff/NewResource'
 import LoginPage from './pages/user/login'
 import RegisterPage from './pages/user/register'
 import Navigationitems from './components/NavigationItems'
-
+import axios from 'axios'
+import dotProp from 'dot-prop'
 
 import {BrowserRouter, Route, Switch, HashRouter} from 'react-router-dom';
 
@@ -23,6 +24,18 @@ class App extends Component {
     this.state = {
       loginedUser: null
     };
+  }
+  componentDidMount() {
+    this.loadLogineduser();
+  }
+
+  async loadLogineduser() {
+    const a = await axios.get(`${window.SERVER_ROOT_URL}/biz/user/get`);
+    // TODO handle error and zero result
+    const u = dotProp.get(a, 'data.user');
+    this.setState({
+      loginedUser: u,
+    });
   }
 
   render() {
