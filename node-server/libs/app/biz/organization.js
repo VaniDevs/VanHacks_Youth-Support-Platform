@@ -1,5 +1,6 @@
 
 const Program = require('../../models/entities/program')
+const emailHelper = require('../../utility/emailHelper')
 
 module.exports.addProgram = {
   method: 'post',
@@ -26,6 +27,7 @@ module.exports.addProgram = {
       const program = req.$injection.program;
       res.$locals.writeData({program});
       // TODO send email notification
+      emailHelper.sendEmail([{mails: 'wxy325@me.com', name:'wxy325'}], 'test title', 'test desc');
       next()
     }
   ]

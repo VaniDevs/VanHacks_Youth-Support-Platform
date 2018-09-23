@@ -9,20 +9,20 @@ var transporter = nodemailer.createTransport({
 });
 
 module.exports.sendEmail = (users, title, content) => {
-    for (let userInfo in users) {
-        mailOptions = {
-            from: 'weekendfuelbag2018@gmail.com', // login user must equel to this user
-            to: userInfo.mails,
-            subject: title,
-            html: '<p>Hi ' + userInfo.name + ', </p><p>' + content + '</p><p>Weekend Fuelbag</p>'
-        };
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                return console.log(error);
-            }
-            console.log('Message sent: ' + info.response);
-        });
-    }
+    users.forEach(userInfo => {
+      mailOptions = {
+        from: 'weekendfuelbag2018@gmail.com', // login user must equel to this user
+        to: userInfo.mails,
+        subject: title,
+        html: '<p>Hi ' + userInfo.name + ', </p><p>' + content + '</p><p>Weekend Fuelbag</p>'
+      };
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+      });
+    })
 };
 
 module.exports.sendTeenNotification = (users, content) => {
