@@ -85,7 +85,7 @@ class RegisterPage extends Component {
     }
     console.log(info);
 
-    const a = await axios.post(`${window.SERVER_ROOT_URL}/biz/user/login`, info);
+    const a = await axios.post(`${window.SERVER_ROOT_URL}/biz/user/register`, info);
     // TODO
     const err = dot.get(a, 'data.err');
     if (err) {

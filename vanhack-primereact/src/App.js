@@ -73,7 +73,7 @@ class App extends Component {
               <Route path="/resource/detail/:resourceId" component={ResourceDetailPage}/>
               <Route path="/staff/newResource" component={NewResourcePage}/>
               <Route path="/user/login" component={()=>{return <LoginPage onLogin={this.onUserLogin.bind(this)}/>}}/>
-              <Route path="/user/register" component={RegisterPage}/>
+              <Route path="/user/register" component={()=>{return <RegisterPage onRegister={this.onUserLogin.bind(this)}/>}}/>
               <Route path="/" component={SearchHomePage}/>
             </Switch>
 

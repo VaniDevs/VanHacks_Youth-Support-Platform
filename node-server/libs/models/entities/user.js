@@ -22,7 +22,7 @@ var schema = Schema({
     education_level: Number, // 0: Pre-school 1:Primary School 2: Middle School 3: High School 4:College 5: Not educated
     low_income: Number, // 1. Confirmed 2. Not confirmed
     school: String,
-    field: Number, //1. Scholarship 2.Mentor 3. Council 4.Food 5.Health 6. Sport
+    field: [Number], //1. Scholarship 2.Mentor 3. Council 4.Food 5.Health 6. Sport
   },
   volunteerInfo: {
     gender: Number,
