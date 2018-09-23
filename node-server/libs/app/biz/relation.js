@@ -1,7 +1,7 @@
 const applyList = require('../../models/relationship/apply_list');
 const mongoose = require('mongoose');
 
-module.exports.registerActivity = {
+module.exports.registerProgram = {
   method: 'post',
   middlewares: [
     (req, res, next) => {
@@ -33,6 +33,8 @@ module.exports.registerActivity = {
       const a = new applyList({
         programRef:mongoose.Types.ObjectId(programId),
         userRef: req.$injection.user._id,
+        result: 0,
+        type: req.$injection.user.type
       });
       a.save((err) => {
         if (err) {

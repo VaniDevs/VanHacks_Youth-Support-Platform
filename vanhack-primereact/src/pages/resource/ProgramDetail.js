@@ -9,15 +9,32 @@ import {Dialog} from 'primereact/dialog';
 class ProgramDetailPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {program: {}};
-    this.queryProgram()
+    this.state = {
+      program: {},
+      applyList: null,
+    };
+    this.queryProgram();
+    this.queryApplyList();
+  }
+  async queryApplyList() {
+    const {programId} = this.props;
+    const a = await axios.post(`${window.SERVER_ROOT_URL}/biz/relation/checkRelation`, {
+      programId
+    });
+    const err = dot.get(a, 'data.err');
+    if (err) {
+      this.setState({applyList: null});
+    } else {
+      const applyList = dot.get(a, 'data.apply_list');
+      this.setState({applyList});
+    }
   }
 
   async queryProgram() {
     const {programId} = this.props;
     const a = await axios.get(`${window.SERVER_ROOT_URL}/biz/program/queryOne?id=` + programId);
     const err = dot.get(a, 'data.err');
-    console.log(a);
+    // console.log(a);
     if (err) {
       // this.showAlert();
     } else {
@@ -33,31 +50,56 @@ class ProgramDetailPage extends Component {
     // });
   }
 
-  onClickApply() {
-
+  async onClickApply() {
+    const {programId} = this.props;
+    const a = await axios.post(`${window.SERVER_ROOT_URL}/biz/relation/registerProgram`, {
+      programId
+    });
+    const err = dot.get(a, 'data.err');
+    if (err) {
+      //TODO show err
+    } else {
+      const applyList = dot.get(a, 'data.apply_list');
+      this.setState({applyList});
+    }
   }
 
-  onClickBeVolunteer() {
-
+  applyResultToString(r) {
+    if (r === 0) {
+      return "Waiting for process";
+    } else if (r === 0) {
+      return "Confirm";
+    } else {
+      return "Reject";
+    }
   }
 
   renderApplyBtn() {
     const {user} = this.props;
-    if (user && user.type === 0) {
+    if (this.state.applyList) {
       return (
           <div>
-            <button onClick={this.onClickApply.bind(this)}>Apply For It!</button>
-          </div>
-      );
-    } else if (user && user.type === 1) {
-      return (
-          <div>
-            <button onClick={this.onClickBeVolunteer.bind(this)}>Be A Volunteer For It!</button>
+            <p>You have apply this program, result: {this.applyResultToString(this.state.applyList.result)}</p>
           </div>
       );
     } else {
-      return null;
+      if (user && user.type === 0) {
+        return (
+            <div>
+              <button onClick={this.onClickApply.bind(this)}>Apply For It!</button>
+            </div>
+        );
+      } else if (user && user.type === 1) {
+        return (
+            <div>
+              <button onClick={this.onClickApply.bind(this)}>Be A Volunteer For It!</button>
+            </div>
+        );
+      } else {
+        return null;
+      }
     }
+
   }
 
   render() {
