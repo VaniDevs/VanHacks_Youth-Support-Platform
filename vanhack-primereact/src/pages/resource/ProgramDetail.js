@@ -6,6 +6,7 @@ import dot from 'dot-prop'
 import axios from 'axios'
 import {Dialog} from 'primereact/dialog';
 import {Button} from 'primereact/button';
+import {OverlayPanel} from 'primereact/overlaypanel';
 
 class ProgramDetailPage extends Component {
   constructor(props) {
@@ -14,6 +15,9 @@ class ProgramDetailPage extends Component {
       program: {},
       applyList: null,
       listWithUser: [],
+      childInfoVisible: false,
+      presentUser: {},
+
     };
 
   }
@@ -139,6 +143,10 @@ class ProgramDetailPage extends Component {
 
     return (
         <div>
+          <Dialog header={this.state.presentUser.name || this.state.presentUser.name} visible={this.state.childInfoVisible} width="400px" modal={true} onHide={(e) => this.setState({childInfoVisible: false})}>
+            {`Email:${this.state.presentUser.email}  Phone:${this.state.presentUser.phone}  Address:${this.state.presentUser.address}`}
+          </Dialog>
+
           <div className={"introduction"}>
           <h1>Program details - {this.state.program.name}</h1>
             <div>Details of the program</div>
@@ -206,6 +214,13 @@ class ProgramDetailPage extends Component {
     )
   }
 
+  showChildDetail(u) {
+    this.setState({
+      childInfoVisible: true,
+      presentUser: u,
+    });
+  }
+
   async changeApplyListState(l, s) {
     const a = await axios.post(`${window.SERVER_ROOT_URL}/biz/relation/updateResult`, {
       applyListId: l._id,
@@ -221,11 +236,16 @@ class ProgramDetailPage extends Component {
         const {userRef} = l;
         return (
             <div key={l._id}>
+              <OverlayPanel ref={(el) => this.op = el}>
+                <p>test</p>
+              </OverlayPanel>
+
               <span className="program-apply-text">{userRef.name || userRef.username}  </span>
               <span className="program-apply-text">{userRef.type === 0 ? 'Student' : 'Volunteer'}</span>
               {
                 l.result == 0? (
                     <span>
+                      <Button className='program-apply-btn' label="Detail" onClick={(e) => this.showChildDetail(userRef)}/>
                       <Button className='program-apply-btn' label="Confirm" onClick={()=>{this.changeApplyListState(l, 1)}}/>
                       <Button className='program-apply-btn' label="Reject" onClick={()=>{this.changeApplyListState(l, 2)}} />
                     </span>
