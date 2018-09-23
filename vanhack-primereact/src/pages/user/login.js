@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import dot from 'dot-prop'
-
+import {Dialog} from 'primereact/dialog';
 
 export default class LoginPage extends Component {
 
@@ -11,7 +11,9 @@ export default class LoginPage extends Component {
     super();
     this.state = {
       username : "",
-      password : ""
+      password : "",
+      alertVisible: false,
+
     };
     // this.state = {count: 0};
     // this.increment = this.increment.bind(this);
@@ -25,22 +27,35 @@ export default class LoginPage extends Component {
     c[key] = e.target.value;
     this.setState(c);
   }
+
+  showAlert() {
+    this.setState({
+      alertVisible: true,
+    })
+  }
+
   async onSubmit() {
-    const a = await axios.get(`${window.SERVER_ROOT_URL}/biz/user/login`, {
+    const a = await axios.post(`${window.SERVER_ROOT_URL}/biz/user/login`, {
       username: this.state.username,
       password: this.state.password,
     });
     const err = dot.get(a, 'data.err');
     if (err) {
-      
+      this.showAlert();
     } else {
-
+      const user = dot.get(a, 'data.user');
+      console.log()
     }
   }
 
   render() {
     return (
         <div className="login-page">
+
+          <Dialog header="Alert" visible={this.state.alertVisible} width="350px" modal={true} onHide={(e) => this.setState({alertVisible: false})}>
+            Username or Password Error!
+          </Dialog>
+
           <div>login page</div>
           <div>
             <span>Username:</span>
