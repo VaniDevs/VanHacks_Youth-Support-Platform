@@ -1,0 +1,17 @@
+#layout-topbar{
+    background-color: #20272a;
+    display: block;
+    padding: 0;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+    font-weight: 400;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+}

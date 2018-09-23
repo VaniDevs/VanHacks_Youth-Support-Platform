@@ -14,6 +14,7 @@ import {InputMask} from 'primereact/inputmask';
 import {Password} from 'primereact/password';
 import {MultiSelect} from 'primereact/multiselect';
 import {Button} from 'primereact/button';
+import {Panel} from 'primereact/panel';
 
 
 
@@ -61,8 +62,8 @@ class RegisterPage extends Component {
       ],
       menuTab: [
         {label: 'I am a young student', type: 0},
-        {label: 'I am an organization', type: 1},
-        {label: 'I am a volunteer', type: 2},
+        {label: 'I am a volunteer', type: 1},
+        {label: 'I am an organization', type: 2},
       ],
       fields: [
         {label: 'Scholarship', value: 0},
@@ -165,8 +166,11 @@ class RegisterPage extends Component {
 
   renderVolunteerForm() {
     return (
-    <div>
-      <div className="form">
+
+
+    <div class="form">
+
+      <div>
         <h2>Volunteer Information</h2>
         <div className="form-row">
           <label className="form-label">Education Level</label>
@@ -177,7 +181,7 @@ class RegisterPage extends Component {
           <MultiSelect value={this.state.volunteer_field} options={this.const.fields} onChange={(e) => this.setState({volunteer_field: e.value})} />
         </div>
         <div className="form-row">
-          <label className="form-label">Interesting Fileds</label>
+          <label className="form-label">Available time</label>
           <Calendar selectionMode="multiple" value={this.state.volunteer_available} onChange={(e) => this.setState({volunteer_available: e.value})}></Calendar>
         </div>
       </div>
@@ -188,7 +192,20 @@ class RegisterPage extends Component {
   renderOrganizationForm() {
     // TODO add form here
     return (
-        <div>organization form</div>
+        <div class="form">
+
+          <div>
+            <h2>Organization Information</h2>
+            <div className="form-row">
+              <label className="form-label">Location</label>
+              <InputText className="form-cell" value={this.state.organization_location} onChange={(e) => this.setState({organization_location: e.value})} />
+            </div>
+            <div className="form-row">
+              <label className="form-label">Web</label>
+              <InputText className="form-cell" value={this.state.organization_web} onChange={(e) => this.setState({organization_web: e.value})} />
+            </div>
+          </div>
+        </div>
     );
   }
 
@@ -218,10 +235,12 @@ class RegisterPage extends Component {
             Username or Password Error!
           </Dialog>
 
+
+
           <div className="introduction">
             <div className="feature-intro">
               <h1>Register</h1>
-              <p>Register as a member of YouthSupport.
+              <p>Register    a member of YouthSupport.
               </p>
             </div>
           </div>

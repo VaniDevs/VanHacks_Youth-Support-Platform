@@ -21,6 +21,9 @@
 }
 
 .introduction {
+  position: relative;
+  left: 100px;
+  top: 100px;
   background-color: #008fba;
   background-image: linear-gradient(90deg,#008fba,#03c4e8);
   text-align: left;
@@ -35,6 +38,8 @@
   font-weight: 400;
 
 }
+
+
 
 .content{
   background-color: #fff;
