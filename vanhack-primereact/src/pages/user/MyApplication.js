@@ -34,17 +34,18 @@ export default class MyApplicationPage extends Component {
   }
 
   render() {
-    const a = this.state.list.map(a=>{
+
+    const a = this.state.list.length ? this.state.list.map(a=>{
       const l = a.programRef;
       return (
           <div key={l._id}>
             <Link to={`/program/detail/${l._id}`}>{l.name}</Link>
           </div>
       );
-    });
+    }) : (<p>You do not have any application.</p>);
     return (
         <div className="my-application">
-          <div className="introduction">My Application</div>
+          <div className="introduction">My Application - {this.props.user? this.props.user.name || this.props.user.username : ""}</div>
           <div className="table-container">{a}</div>
         </div>
     );

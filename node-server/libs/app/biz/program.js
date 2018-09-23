@@ -2,10 +2,18 @@ const Program = require('../../models/entities/program');
 const mongoose = require('mongoose');
 
 module.exports.search = {
-  method: 'get',
+  method: 'post',
   middlewares: [
     (req, res, next) => {
-      Program.find((err, r) => {
+      const {keyword} = req.body;
+
+      Program.find(
+          {
+            '$or': [
+              {'name' : {'$regex' : '' + keyword}},
+              {'desc' : {'$regex' : '' + keyword}}
+            ]
+          }, (err, r) => {
         if (err) {
           next(err);
         } else {

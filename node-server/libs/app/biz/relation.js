@@ -1,4 +1,6 @@
 const applyList = require('../../models/relationship/apply_list');
+const Program = require('../../models/entities/program');
+const emailHelper = require('../../utility/emailHelper');
 const mongoose = require('mongoose');
 
 module.exports.registerProgram = {
@@ -47,6 +49,21 @@ module.exports.registerProgram = {
         }
       })
 
+
+      Program.findOne({
+        _id:a.programRef
+      }).populate('orgRef').exec((err, p) =>{
+        if ((!err) && p) {
+          if (p.orgRef){
+            const o = p.orgRef;
+            emailHelper.sendOrganizationNotification([{
+              mails: o.email,
+              name: o.name || o.username,
+              programName: `<a href=http://localhost:3000/#/program/detail/${p._id}>${p.name}</a>`
+            }]);
+          }
+        }
+      });
     },
   ]
 }
@@ -95,7 +112,7 @@ module.exports.updateResult = {
       const {applyListId} = req.body;
       applyList.findOne({
         _id: mongoose.Types.ObjectId(applyListId),
-      }, function (err, a) {
+      }).exec(function (err, a) {
         if (err) {
           next(err);
         } else if (!a) {
@@ -120,6 +137,7 @@ module.exports.updateResult = {
           next();
         }
       });
+
     }
   ]
 };
