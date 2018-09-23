@@ -1,0 +1,12 @@
+.search-result-row {
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.search-result-divider {
+    height: 1px;
+    width: 90%;
+    display: block;
+    background-color: lightgrey;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

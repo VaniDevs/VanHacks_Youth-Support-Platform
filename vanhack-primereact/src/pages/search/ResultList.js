@@ -20,9 +20,9 @@ class ResultList extends Component {
       return <ResultRow key={d._id} resource={d}/>
     });
     return (
-        <div>
-          <div>result list</div>
+        <div className="search-result-container">
           <div>{content}</div>
+
         </div>
     );
   }

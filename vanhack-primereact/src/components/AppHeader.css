@@ -42,6 +42,7 @@
 .app-header .nav-item a{
     text-decoration:none;
     margin: 10px;
+    color: white;
 }
 
 .app-header .nav-item a:visited {
