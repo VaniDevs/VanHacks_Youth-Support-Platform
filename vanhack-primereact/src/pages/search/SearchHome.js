@@ -17,9 +17,9 @@ class SearchHomePage extends Component {
   async onSubmit() {
     console.log(this.state.keyword);
     // this.props.searchResources();
-    const a = await axios.get(`${window.SERVER_ROOT_URL}/biz/resource/search`);
+    const a = await axios.get(`${window.SERVER_ROOT_URL}/biz/program/search`);
     // TODO handle error and zero result
-    this.setState({searchResults:a.data.resources});
+    this.setState({searchResults:a.data.programs});
   }
   componentDidMount() {
     // this.queryData();

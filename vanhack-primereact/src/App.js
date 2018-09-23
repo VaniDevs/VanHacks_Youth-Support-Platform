@@ -6,7 +6,7 @@ import 'primereact/resources/themes/omega/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import SearchHomePage from './pages/search/SearchHome'
-import ResourceDetailPage from './pages/resource/ResourceDetail'
+import ProgramDetailPage from './pages/resource/ProgramDetail'
 import AddProgramPage from './pages/organization/AddProgram'
 import LoginPage from './pages/user/login'
 import RegisterPage from './pages/user/register'
@@ -52,7 +52,7 @@ class App extends Component {
             />
 
             <Switch>
-              <Route path="/resource/detail/:resourceId" component={ResourceDetailPage}/>
+              <Route path="/program/detail/:resourceId" component={ProgramDetailPage}/>
               <Route path="/organization/add_program" component={AddProgramPage}/>
               <Route path="/user/login" component={()=>{return <LoginPage onLogin={this.onUserLogin.bind(this)}/>}}/>
               <Route path="/user/register" component={()=>{return <RegisterPage onRegister={this.onUserLogin.bind(this)}/>}}/>

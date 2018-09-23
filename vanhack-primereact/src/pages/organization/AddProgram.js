@@ -5,25 +5,9 @@ import './AddProgram.css'
 import axios from 'axios'
 import {Dialog} from 'primereact/dialog';
 import dot from 'dot-prop'
-/*
-*
-* name: String,
-  desc: String,
-  location: String,
-  geo: {
-    latitude: Number,
-    longitude: Number,
-  },
-  deadline: Date,
-  orgRef: {type: mongoose.Schema.Types.ObjectId, ref: 'user'},
-  position_teen: Number,
-  position_volunteer:Number, //If 0, means don't need volunteer for this program
-  contact: {
-    name: String,
-    phone: String,
-  },
-  field: Number, //1. Scholarship 2.Mentor 3. Council 4.Food 5.Health 6.Sport
-* */
+import {
+  withRouter
+} from 'react-router-dom'
 
 class AddProgramPage extends Component {
   constructor(props) {
@@ -62,16 +46,16 @@ class AddProgramPage extends Component {
     };
 
 
-    const a = await axios.post(`${window.SERVER_ROOT_URL}/biz/user/register`, r);
-    // TODO
+    const a = await axios.post(`${window.SERVER_ROOT_URL}/biz/organization/addProgram`, r);
     const err = dot.get(a, 'data.err');
     if (err) {
       this.showAlert();
     } else {
-      const user = dot.get(a, 'data.user');
-      if (this.props.onRegister && user) {
-        this.props.onRegister(user);
-      }
+      const program = dot.get(a, 'data.program');
+      // console.log(program);
+      // if (this.props.onRegister && user) {
+      //   this.props.onRegister(user);
+      // }
       this.props.history.push('/');
     }
 
@@ -122,7 +106,7 @@ class AddProgramPage extends Component {
   }
 }
 
-export default AddProgramPage;
+export default withRouter(AddProgramPage);
 
 
 
