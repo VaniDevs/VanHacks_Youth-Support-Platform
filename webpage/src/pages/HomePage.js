@@ -7,6 +7,7 @@ import SideBar from '../components/SideBar'
 import InfoPage from './info/InfoPage'
 import SearchHomePage from './search/SearchHome'
 import NewResourcePage from './staff/NewResource'
+import ResourceDetailPage from './resource/ResourceDetail'
 
 
 
@@ -23,6 +24,7 @@ export default class HomePage extends Component {
                     </nav>
                     <div style={{minHeight : "490px"}}>
                         <Switch>
+                          <Route path="/resource/detail/:resourceId" component={ResourceDetailPage}/>
                           <Route path="/staff/newResource" component={NewResourcePage} />
                           <Route path="/home/search" component={SearchHomePage} />
                           <Route path="/" component={InfoPage} />

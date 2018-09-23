@@ -1,6 +1,8 @@
 /**
  */
 import React, { Component } from 'react';
+import ResultRow from './ResultRow'
+
 require('./ResultList.css');
 
 
@@ -15,7 +17,7 @@ class ResultList extends Component {
 
   render () {
     const content = this.props.results.map((d)=>{
-      return <div id={d._id}>{d.title}</div>
+      return <ResultRow id={d._id} resource={d}/>
     });
     return (
         <div>
