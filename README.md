@@ -13,10 +13,11 @@ Search Page: Users can search in the input and return result from database
 Search Result:
 ![alt text](https://github.com/VaniDevs/VanHacks_Youth-Support-Platform/blob/master/webpage/screen_shot/Search%20Result.png)
 
-Organizations can publish their program here:
+Program details:
 ![alt text](https://github.com/VaniDevs/VanHacks_Youth-Support-Platform/blob/master/webpage/screen_shot/Program%20Details.png)
 
-Program details:
+
+Organizations can publish their program here:
 ![alt text](https://github.com/VaniDevs/VanHacks_Youth-Support-Platform/blob/master/webpage/screen_shot/Program%20Submit.png)
 
 
