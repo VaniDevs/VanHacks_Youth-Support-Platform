@@ -1,5 +1,6 @@
 module.exports = {
   user : require('./user'),
-  resource: require('./resource')
+  program: require('./program'),
+  organization: require('./organization'),
 };
 

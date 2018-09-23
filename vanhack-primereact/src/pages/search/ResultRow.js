@@ -7,8 +7,8 @@ export default class ResultRow extends Component {
     const {resource} = this.props;
     return (
         <div>
-          <span>{resource.title}</span>
-          <Link to={"/resource/detail/" + resource._id}>Link</Link>
+          <span>{resource.name}</span>
+          <Link to={"/program/detail/" + resource._id}>Link</Link>
         </div>
     );
   }

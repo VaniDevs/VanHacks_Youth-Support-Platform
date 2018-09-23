@@ -2,13 +2,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
-import './ResourceDetail.css'
-
+import './ProgramDetail.css'
+import dot from 'dot-prop'
+import axios from 'axios'
+import {Dialog} from 'primereact/dialog';
 
 class ResourceDetailPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {resource: {}};
+    this.state = {program: {}};
 
     const { resourceId } = this.props.match.params;
     console.log(resourceId)
@@ -20,6 +22,19 @@ class ResourceDetailPage extends Component {
     //   console.log(err);
     //   console.log(r);
     // });
+    this.queryProgram()
+  }
+  async queryProgram() {
+    const programId = this.props.match.params.resourceId;
+    const a = await axios.get(`${window.SERVER_ROOT_URL}/biz/program/queryOne?id=` + programId);
+    const err = dot.get(a, 'data.err');
+    console.log(a);
+    if (err) {
+      // this.showAlert();
+    } else {
+      const program = dot.get(a, 'data.program');
+      this.setState({program});
+    }
   }
 
   onSubmit(values) {
@@ -33,11 +48,10 @@ class ResourceDetailPage extends Component {
     // const { handleSubmit } = this.props;
 
     return (
-        <div className="container login-page">
-          <div className="row">
-            <div className="col-md-4 col-md-offset-4">
-              ResourceDetail:{this.props.match.params.resourceId}
-            </div>
+        <div>
+          <div>
+            <div>{this.state.program.name}</div>
+            <div>{this.state.program.desc}</div>
           </div>
         </div>
     )

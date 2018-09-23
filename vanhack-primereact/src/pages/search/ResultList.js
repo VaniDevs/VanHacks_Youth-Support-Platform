@@ -17,7 +17,7 @@ class ResultList extends Component {
 
   render () {
     const content = this.props.results.map((d)=>{
-      return <ResultRow id={d._id} resource={d}/>
+      return <ResultRow key={d._id} resource={d}/>
     });
     return (
         <div>

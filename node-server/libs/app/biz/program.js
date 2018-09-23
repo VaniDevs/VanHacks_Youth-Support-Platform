@@ -1,16 +1,16 @@
-const Resource = require('../../models/entities/program');
-const mongoose = require('mongoose')
+const Program = require('../../models/entities/program');
+const mongoose = require('mongoose');
 
 module.exports.search = {
   method: 'get',
   middlewares: [
     (req, res, next) => {
-      Resource.find((err, r)=>{
+      Program.find((err, r)=>{
         if (err) {
           next(err);
         } else {
           res.$locals.writeData({
-            resources: r
+            programs: r
           });
           next();
         }
@@ -25,14 +25,14 @@ module.exports.queryOne = {
     (req, res, next) => {
       const {id} = req.query;
 
-      Resource.findOne({
+      Program.findOne({
         _id : mongoose.Types.ObjectId(id)
       }, (err, r)=>{
         if (err) {
           next(err);
         } else {
           res.$locals.writeData({
-            resource: r
+            program: r
           });
           next();
         }
@@ -47,7 +47,7 @@ module.exports.add = {
     (req, res, next) => {
       const {title, description} = req.body
       //TODO added by
-      const resource = new Resource({
+      const resource = new Program({
         title,
         description,
       });

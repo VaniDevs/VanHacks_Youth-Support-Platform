@@ -43,17 +43,15 @@ module.exports.register = {
   method: 'post',
   middlewares: [
     (req, res, next) => {
-      const {username, password} = req.body
+      const userInfo = req.body;
+      const {username} = userInfo;
       User.findOne({username}).exec((err, user) => {
         if (user) {
           next(new Error('Username has already been registered'))
         } else {
-          user = new User({
-            username,
-            password,
-          })
+          user = new User(userInfo);
           req.$injection.user = user;
-          user.save(next)
+          user.save(next);
         }
       });
     },
