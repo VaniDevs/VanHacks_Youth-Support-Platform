@@ -13,6 +13,8 @@ import {Calendar} from 'primereact/calendar';
 import {InputMask} from 'primereact/inputmask';
 import {Password} from 'primereact/password';
 import {MultiSelect} from 'primereact/multiselect';
+import {Button} from 'primereact/button';
+
 
 
 class RegisterPage extends Component {
@@ -25,7 +27,7 @@ class RegisterPage extends Component {
       username: "",
       password: "",
       passwordAgain: "",
-      type: 0,
+      type: 1,
       name: "",
       email: "",
       phone: "",
@@ -34,12 +36,11 @@ class RegisterPage extends Component {
 
       // teen
       teen_school: "",
-      teen_gender: 0,
       teen_education_level: 0,
       teen_field: [],
 
       // volunteer
-      volunteer_gender: 0,
+
       volunteer_education_level: 0,
       volunteer_field: [],
       volunteer_available: [],
@@ -64,9 +65,12 @@ class RegisterPage extends Component {
         {label: 'I am a volunteer', type: 2},
       ],
       fields: [
-        {label: 'I am a young student', type: 0},
-        {label: 'I am an organization', type: 1},
-        {label: 'I am a volunteer', type: 2},
+        {label: 'Scholarship', value: 0},
+        {label: 'Mentor', value: 1},
+        {label: 'Council', value: 2},
+        {label: 'Food', value: 3},
+        {label: 'Health', value: 4},
+        {label: 'Sport', value: 5}
       ]
     };
   }
@@ -95,7 +99,7 @@ class RegisterPage extends Component {
 
     if (this.state.type === 0) {
       info.teenInfo = {
-        gender: this.state.teen_gender,
+
         education_level: this.state.education_level,
         school: this.state.teen_school,
         field: this.state.teen_field,
@@ -148,26 +152,36 @@ class RegisterPage extends Component {
             </div>
             <div className="form-row">
               <label className="form-label">Education Level</label>
-              <Dropdown className="form-label" value={this.state.teen_education_level} options={this.const.educationLevel} onChange={(e) => this.setState({teen_education_level: e.value})} placeholder="Select a City" />
+              <Dropdown className="form-label" value={this.state.teen_education_level} options={this.const.educationLevel} onChange={(e) => this.setState({teen_education_level: e.value})}  />
             </div>
-
             <div className="form-row">
               <label className="form-label">Interesting Fileds</label>
-
-              <MultiSelect value={this.state.cities} options={citySelectItems} onChange={(e) => this.setState({cities: e.value})} />
-
-
+              <MultiSelect value={this.state.teen_field} options={this.const.fields} onChange={(e) => this.setState({teen_field: e.value})} />
             </div>
-
           </div>
         </div>
     );
   }
 
   renderVolunteerForm() {
-    // TODO add form here
     return (
-        <div>volunteer form</div>
+    <div>
+      <div className="form">
+        <h2>Volunteer Information</h2>
+        <div className="form-row">
+          <label className="form-label">Education Level</label>
+          <Dropdown className="form-label" value={this.state.volunteer_education_level} options={this.const.educationLevel} onChange={(e) => this.setState({volunteer_education_level: e.value})} />
+        </div>
+        <div className="form-row">
+          <label className="form-label">Interesting Fileds</label>
+          <MultiSelect value={this.state.volunteer_field} options={this.const.fields} onChange={(e) => this.setState({volunteer_field: e.value})} />
+        </div>
+        <div className="form-row">
+          <label className="form-label">Interesting Fileds</label>
+          <Calendar selectionMode="multiple" value={this.state.volunteer_available} onChange={(e) => this.setState({volunteer_available: e.value})}></Calendar>
+        </div>
+      </div>
+    </div>
     );
   }
 
@@ -261,8 +275,8 @@ class RegisterPage extends Component {
           </div>
 
 
-          <div>
-            <button onClick={this.onClickSubmit.bind(this)}>Submit</button>
+          <div className="button-submit">
+            <Button label={"Submit"} onClick={this.onClickSubmit.bind(this)} />
           </div>
         </div>
     );
