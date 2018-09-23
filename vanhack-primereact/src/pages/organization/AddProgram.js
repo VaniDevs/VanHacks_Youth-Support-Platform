@@ -147,7 +147,6 @@ class AddProgramPage extends Component {
                 <MultiSelect className={"types"} value={this.state.field} options={this.const.fields} onChange={(e) => this.setState({field: e.value})} />
                 <span className={"span"}>Enter the types of your programs</span>
               </li>
-
               <li>
                 <Button className={"submit"} label={"Submit"} onClick={this.submitBtnClicked.bind(this)}></Button>
               </li>
