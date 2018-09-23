@@ -6,6 +6,14 @@ import {
   withRouter
 } from 'react-router-dom'
 import {Dropdown} from 'primereact/dropdown';
+import "./register.css";
+import {TabMenu} from 'primereact/tabmenu';
+import {InputText} from 'primereact/inputtext';
+import {Calendar} from 'primereact/calendar';
+import {InputMask} from 'primereact/inputmask';
+import {Password} from 'primereact/password';
+import {MultiSelect} from 'primereact/multiselect';
+
 
 class RegisterPage extends Component {
   constructor() {
@@ -40,6 +48,26 @@ class RegisterPage extends Component {
       organization_location: '',
       organization_web: '',
 
+    };
+
+    this.const = {
+       educationLevel: [
+        {label: 'Pre-school', value: 0},
+        {label: 'Primary School', value: 1},
+        {label: 'Middle School', value: 2},
+        {label: 'High School', value: 3},
+        {label: 'College', value: 4}
+      ],
+      menuTab: [
+        {label: 'I am a young student', type: 0},
+        {label: 'I am an organization', type: 1},
+        {label: 'I am a volunteer', type: 2},
+      ],
+      fields: [
+        {label: 'I am a young student', type: 0},
+        {label: 'I am an organization', type: 1},
+        {label: 'I am a volunteer', type: 2},
+      ]
     };
   }
 
@@ -106,17 +134,31 @@ class RegisterPage extends Component {
   }
 
   renderTeenForm() {
+
+
+
     // TODO add form here
     return (
         <div>
-          <div>teen form</div>
-          <div>
-            <div>
-              <span>School:</span>
-              <input type="text" value={this.state.teen_school} onChange={(e) => {
-                this.onChangeText(e, 'teen_school')
-              }}/>
+          <div className="form">
+            <h2>Student/Teenage Information</h2>
+            <div className="form-row">
+              <label className="form-label">School</label>
+              <InputText className="form-cell" value={this.state.teen_school} onChange={(e) => this.setState({teen_school: e.value})}></InputText>
             </div>
+            <div className="form-row">
+              <label className="form-label">Education Level</label>
+              <Dropdown className="form-label" value={this.state.teen_education_level} options={this.const.educationLevel} onChange={(e) => this.setState({teen_education_level: e.value})} placeholder="Select a City" />
+            </div>
+
+            <div className="form-row">
+              <label className="form-label">Interesting Fileds</label>
+
+              <MultiSelect value={this.state.cities} options={citySelectItems} onChange={(e) => this.setState({cities: e.value})} />
+
+
+            </div>
+
           </div>
         </div>
     );
@@ -137,6 +179,7 @@ class RegisterPage extends Component {
   }
 
   renderDetailForm() {
+    console.log(this.state.type);
     if (this.state.type === 0) {
       return this.renderTeenForm();
     } else if (this.state.type === 1) {
@@ -147,58 +190,76 @@ class RegisterPage extends Component {
   }
 
   render() {
-    const citySelectItems = [
-      {label: 'teen', value: 0},
-      {label: 'Volunteer', value: 1},
-      {label: 'Organization', value: 2},
-    ];
+
+
+
+
+
+
 
     // TODO name, email, phone, birthday, address
     return (
-        <div>
+        <div className="register-page">
           <Dialog header="Alert" visible={this.state.alertVisible} width="350px" modal={true} onHide={(e) => this.setState({alertVisible: false})}>
             Username or Password Error!
           </Dialog>
 
-
-          <div>
-            register
+          <div className="introduction">
+            <div className="feature-intro">
+              <h1>Register</h1>
+              <p>Register as a member of YouthSupport.
+              </p>
+            </div>
           </div>
 
-          <div>
+          <div className="content">
 
-            <div>
-              <span>Username:</span>
-              <input type="text" value={this.state.username} onChange={(e) => {
-                this.onChangeText(e, 'username')
-              }}/>
+            <div className="content-center">
+            <TabMenu className="tabMenu" model={this.const.menuTab} activeItem={this.state.type} onTabChange={(e) => this.setState({type: e.value.type})}/>
             </div>
+              <div className="register-input">
+                <div className="form">
+                  <h2>User Register Information</h2>
+                  <div className="form-row">
+                    <label className="form-label">Username</label>
+                    <InputText className="form-cell" value={this.state.username} onChange={(e) => this.setState({username: e.target.value})} />
+                  </div>
 
-            <div>
-              <span>Password:</span>
-              <input type="password" value={this.state.password} onChange={(e) => {
-                this.onChangeText(e, 'password')
-              }}/>
-            </div>
+                  <div className="form-row">
+                    <label className="form-label">Password</label>
+                    <Password className="form-cell" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} />
+                  </div>
+                  <div className="form-row">
+                    <label className="form-label">Password Again</label>
+                    <Password className="form-cell" value={this.state.passwordAgain} onChange={(e) => this.setState({passwordAgain: e.target.value})} />
+                  </div>
+                  <div className="form-row">
+                    <label className="form-label">Birthday</label>
+                    <Calendar ID="birthday" className="form-cell" value={this.state.birthday} onChange={(e) => this.setState({birthday: e.value})}></Calendar>
+                  </div>
+                  <div className="form-row">
+                    <label className="form-label">Telephone</label>
+                    <InputMask className="form-cell" mask="(999) 999-9999" value={this.state.phone} onChange={(e) => this.setState({phone: e.value})}></InputMask>
+                  </div>
+                  <div className="form-row">
+                  <label className="form-label">Email</label>
+                  <InputText className="form-cell" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />
+                </div>
+                  <div className="form-row">
+                    <label className="form-label">Address</label>
+                    <InputText className="form-cell address" value={this.state.address} onChange={(e) => this.setState({address: e.target.value})} />
+                  </div>
+                  {
+                    this.renderDetailForm()
+                  }
 
-            <div>
-              <span>Password Again:</span>
-              <input type="password" value={this.state.password} onChange={(e) => {
-                this.onChangeText(e, 'password')
-              }}/>
-            </div>
 
-            <div>
-              <span>type</span>
-              <Dropdown value={this.state.type} options={citySelectItems} onChange={(e) => {
-                this.setState({type: e.value})
-              }} placeholder="Select User Type"/>
-            </div>
 
-            {
-              this.renderDetailForm()
-            }
+                </div>
+
+              </div>
           </div>
+
 
           <div>
             <button onClick={this.onClickSubmit.bind(this)}>Submit</button>
