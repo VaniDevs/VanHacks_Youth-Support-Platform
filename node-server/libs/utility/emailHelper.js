@@ -14,7 +14,7 @@ module.exports.sendEmail = (users, title, content) => {
             from: 'weekendfuelbag2018@gmail.com', // login user must equel to this user
             to: userInfo.mails,
             subject: title,
-            html: '<p>Hi ' + userInfo.name + ', </p><p>' + content + '</p>'
+            html: '<p>Hi ' + userInfo.name + ', </p><p>' + content + '</p><p>Weekend Fuelbag</p>'
         };
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
@@ -25,19 +25,14 @@ module.exports.sendEmail = (users, title, content) => {
     }
 };
 
-module.exports.sendTeenNotification = (users) => {
+module.exports.sendTeenNotification = (users, content) => {
     for (let userInfo in users) {
         mailOptions = {
             from: 'weekendfuelbag2018@gmail.com', // login user must equel to this user
             to: userInfo.mails,
             subject: 'Notification: New resources are available!',
             html: '<p>Dear ' + userInfo.name + ',</p><p>We have some new resources for you near your location.</p>' +
-            '<p>1. Boy Scouts Of Canada Fraser Valley Council</p><p>Programs for youth in municipalities and' +
-            ' areas in the territory covered by the council. Programs include group and individual activities' +
-            ' that emphasize experiential learning with emphasis on the outdoors. Training programs for adult' +
-            ' members to teach new skills and enhance existing skills.</p><p>2. Canada Ice Dance Theatre' +
-            ' Association</p><p>Share School for youth, kids and adults. Performance program-general audie' +
-            ' nce shows, community skating events storytelling on ice for Schools</p><p>Weekend Fuelbag</p>'
+            '<p>' + content + '</p><p>Weekend Fuelbag</p>'
         };
         transporter.sendMail(mailOptions, function(error, info){
             if(error){
