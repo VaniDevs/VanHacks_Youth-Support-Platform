@@ -105,7 +105,7 @@ class ProgramDetailPage extends Component {
     if (this.state.applyList) {
       return (
           <div className={"apply-message"}>
-            <p>You have apply this program, result: {this.applyResultToString(this.state.applyList.result)}</p>
+            <p>You have applied this program, result: {this.applyResultToString(this.state.applyList.result)}</p>
           </div>
       );
     } else {
