@@ -92,6 +92,11 @@
      font-size: 17px;
  }
 
+.form-style-7 .hehe .ui-dropdown-label{
+    margin-left: 30px;
+    width: 300px;
+}
+
 .form-style-7 .types{
     display: block;
     /*padding: 3px;*/

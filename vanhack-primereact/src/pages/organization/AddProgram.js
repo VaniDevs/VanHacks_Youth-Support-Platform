@@ -146,7 +146,7 @@ class AddProgramPage extends Component {
             </li>
               <li>
                 <label for="bio">Program types</label>
-                <Dropdown className={"types"} value={this.state.field} options={this.const.fields} onChange={(e) => this.setState({field: e.value})} />
+                <Dropdown className={"types hehe"} value={this.state.field} options={this.const.fields} onChange={(e) => this.setState({field: e.value})} />
                 <span className={"span"}>Enter the types of your programs</span>
               </li>
               <li>
