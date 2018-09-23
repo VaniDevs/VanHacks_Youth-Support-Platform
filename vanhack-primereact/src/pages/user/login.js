@@ -10,6 +10,7 @@ import {
 import './login.css';
 import {InputText} from 'primereact/inputtext';
 import {Button} from 'primereact/button';
+import {Password} from 'primereact/password';
 
 
 class LoginPage extends Component {
@@ -89,7 +90,7 @@ class LoginPage extends Component {
               </div>
               <div className="inputCell">
                 <span className="label">Password:</span>
-                <InputText className={"cell"} value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} />
+                <Password className={"cell"} value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} />
 
               </div>
             </div>
