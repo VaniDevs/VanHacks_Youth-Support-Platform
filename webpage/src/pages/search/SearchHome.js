@@ -32,7 +32,7 @@ class SearchHomePage extends Component {
           <div>One Punch - Youth Support</div>
           <div>
             <input type="text" onChange={this.onKeywordChange.bind(this)} value={this.state.keyword}/>
-            <button onClick={this.onSubmit.bind(this)}>search</button>
+            <button className="btn btn-primary" onClick={this.onSubmit.bind(this)}>search</button>
           </div>
           <ResultList
               results={this.props.searchResults}
