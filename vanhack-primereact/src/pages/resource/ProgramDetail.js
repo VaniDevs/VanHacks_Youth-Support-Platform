@@ -100,7 +100,7 @@ class ProgramDetailPage extends Component {
     const {user} = this.props;
     if (this.state.applyList) {
       return (
-          <div>
+          <div className={"apply-message"}>
             <p>You have apply this program, result: {this.applyResultToString(this.state.applyList.result)}</p>
           </div>
       );
@@ -110,16 +110,16 @@ class ProgramDetailPage extends Component {
             <div>
 
 
-              <div>
-                <button onClick={this.onClickApply.bind(this)}>Apply For It!</button>
+              <div className={"apply-button"}>
+                <Button label="Apply For It!" onClick={this.onClickApply.bind(this)}></Button>
               </div>
             </div>
 
         );
       } else if (user && user.type === 1) {
         return (
-            <div>
-              <button onClick={this.onClickApply.bind(this)}>Be A Volunteer For It!</button>
+            <div className={"apply-button"}>
+                <Button label={"Be A Volunteer For It!"} onClick={this.onClickApply.bind(this)}></Button>
             </div>
         );
       } else {
