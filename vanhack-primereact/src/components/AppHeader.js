@@ -9,7 +9,7 @@ export default class AppHeader extends Component {
         <div id="layout-topbar" className="app-header">
           <Link to="/" className="app-title">
             <span >
-              Weekenk Fuelbag Resource Platform {
+              Weekend Fuelbag Resource Platform {
               this.props.user ? ` - ${this.props.user.name || this.props.user.username}` : ''
             }
             </span>
