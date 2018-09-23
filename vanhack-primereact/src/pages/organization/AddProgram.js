@@ -8,6 +8,10 @@ import dot from 'dot-prop'
 import {
   withRouter
 } from 'react-router-dom'
+import {Button} from 'primereact/button';
+import {Calendar} from 'primereact/calendar';
+import {MultiSelect} from 'primereact/multiselect';
+
 
 class AddProgramPage extends Component {
   constructor(props) {
@@ -30,6 +34,17 @@ class AddProgramPage extends Component {
       contact_name: '',
       contact_phone: '',
       field: 0,
+    };
+
+    this.const = {
+      fields: [
+        {label: 'Scholarship', value: 0},
+        {label: 'Mentor', value: 1},
+        {label: 'Council', value: 2},
+        {label: 'Food', value: 3},
+        {label: 'Health', value: 4},
+        {label: 'Sport', value: 5}
+      ]
     };
 
     // this.handleChange = this.handleChange.bind(this);
@@ -84,23 +99,63 @@ class AddProgramPage extends Component {
             Error
           </Dialog>
 
-          <div>
-            <span>Program Name:</span>
-            <input type="text" value={this.state.name} onChange={(e) => {
-              this.onChangeText(e, 'name')
-            }}/>
+          <div className={"introduction"}>
+            <h3>Add your resource</h3>
+            <div>Add you resource to support young teens in Vancouver</div>
           </div>
 
 
-          <div>
-            <span>Program Description:</span>
-            <input type="text" value={this.state.desc} onChange={(e) => {
-              this.onChangeText(e, 'desc')
-            }}/>
-          </div>
+          <form class="form-style-7">
+            <ul>
+              <li>
+                <label for="name">Program Name</label>
+                <input type="text" name="name" maxlength="100"/>
+                  <span className={"span"}>Enter your full name here</span>
+              </li>
+              <li>
+                <label for="email">Description</label>
+                <input type="email" name="email" maxlength="100"/>
+                  <span className={"span"}>Enter the description of your program</span>
+              </li>
+              <li>
+                <label for="url">Website</label>
+                <input type="url" name="url" maxlength="100"/>
+                  <span className={"span"}>Your website address (eg: http://www.google.com)</span>
+              </li>
+              <li>
+                <label for="bio">Location</label>
+                <textarea name="bio" onkeyup="adjust_textarea(this)"></textarea>
+                <span className={"span"}>Where is this location</span>
+              </li>
+              <li>
+                <label for="bio">Positions for young teenagers</label>
+                <textarea name="bio" onkeyup="adjust_textarea(this)"></textarea>
+                <span className={"span"}>Positions for young teenagers </span>
+              </li>
+              <li>
+                <label for="bio">Number of Volunteers</label>
+                <textarea name="bio" onkeyup="adjust_textarea(this)"></textarea>
+                <span className={"span"}>How many volunteers you need? 0 if you don't need volunteers</span>
+              </li>
+              <li>
+              <label for="bio">Application Deadline</label>
+              <Calendar className={"calendar"} value={this.state.deadline} onChange={(e) => this.setState({deadline: e.value})}></Calendar>
+              <span className={"span"}>Enter the application deadline</span>
+            </li>
+              <li>
+                <label for="bio">Program types</label>
+                <MultiSelect className={"types"} value={this.state.field} options={this.const.fields} onChange={(e) => this.setState({field: e.value})} />
+                <span className={"span"}>Enter the types of your programs</span>
+              </li>
+
+              <li>
+                <Button className={"submit"} label={"Submit"} onClick={this.submitBtnClicked.bind(this)}></Button>
+              </li>
+            </ul>
+          </form>
 
 
-          <button onClick={this.submitBtnClicked.bind(this)}>submit</button>
+
         </div>
     )
   }
