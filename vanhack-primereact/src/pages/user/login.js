@@ -7,6 +7,10 @@ import {Dialog} from 'primereact/dialog';
 import {
   withRouter
 } from 'react-router-dom'
+import './login.css';
+import {InputText} from 'primereact/inputtext';
+import {Button} from 'primereact/button';
+
 
 class LoginPage extends Component {
 
@@ -60,24 +64,40 @@ class LoginPage extends Component {
             Username or Password Error!
           </Dialog>
 
-          <div>login page</div>
-          <div>
+          <div className={"login-dialog"}>
+
+          <div >
+            <div className="intro">
+              <h3 >
+                Login
+              </h3>
+
+            </div>
+
 
             <div>
-              <span>Username:</span>
-              <input type="text" value={this.state.username} onChange={(e)=>{this.onChangeText(e, 'username')}} />
+
+              <div className="inputCell">
+                <span className="label">Username:</span>
+                <InputText className="cell" value={this.state.username} onChange={(e) => this.setState({username: e.target.value})} />
+              </div>
+              <div className="inputCell">
+                <span className="label">Password:</span>
+                <InputText className={"cell"} value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} />
+
+              </div>
             </div>
-            <div>
-              <span>Password:</span>
-              <input type="password" value={this.state.password} onChange={(e)=>{this.onChangeText(e, 'password')}}/>
-            </div>
-          </div>
-          <div>
+
+
+
+            <Button className={"login-button"} label={"Login"} onClick={()=>{this.onSubmit();}}>
+
+            </Button>
 
           </div>
-          <button onClick={()=>{this.onSubmit();}}>
-            Login
-          </button>
+          </div>
+
+
         </div>
     );
   }
