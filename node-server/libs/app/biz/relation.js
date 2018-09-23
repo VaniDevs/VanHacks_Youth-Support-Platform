@@ -123,3 +123,32 @@ module.exports.updateResult = {
     }
   ]
 };
+
+module.exports.queryUserList = {
+  method: 'post',
+  middlewares: [
+    (req, res, next) => {
+      if (!req.$injection.user) {
+        next(new Error('User not logined'));
+        return;
+      }
+      // TODO verify organization
+      next();
+    },
+    (req, res, next) => {
+      const {programId} = req.body;
+      applyList.find({
+        programRef: mongoose.Types.ObjectId(programId),
+      }).populate('userRef').exec((err, lists) => {
+        if (err) {
+          next(err);
+        } else {
+          res.$locals.writeData({
+            apply_lists: lists
+          });
+          next();
+        }
+      })
+    }
+  ]
+};

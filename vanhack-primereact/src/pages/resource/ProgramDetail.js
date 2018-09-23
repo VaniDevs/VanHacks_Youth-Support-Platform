@@ -12,9 +12,26 @@ class ProgramDetailPage extends Component {
     this.state = {
       program: {},
       applyList: null,
+      listWithUser: []
     };
     this.queryProgram();
     this.queryApplyList();
+    this.queryListWithUser();
+  }
+
+  async queryListWithUser() {
+    const {programId} = this.props;
+    const a = await axios.post(`${window.SERVER_ROOT_URL}/biz/relation/queryUserList`, {
+      programId
+    });
+    const err = dot.get(a, 'data.err');
+    if (err) {
+      this.setState({applyList: null});
+    } else {
+      const listWithUser = dot.get(a, 'data.apply_lists');
+      console.log(listWithUser);
+      this.setState({listWithUser});
+    }
   }
   async queryApplyList() {
     const {programId} = this.props;
@@ -67,10 +84,10 @@ class ProgramDetailPage extends Component {
   applyResultToString(r) {
     if (r === 0) {
       return "Waiting for process";
-    } else if (r === 0) {
-      return "Confirm";
+    } else if (r === 1) {
+      return "Confirmed";
     } else {
-      return "Reject";
+      return "Rejected";
     }
   }
 
@@ -111,8 +128,56 @@ class ProgramDetailPage extends Component {
           <div>
             <p>{this.state.program.desc}</p>
           </div>
+          <div>{this.renderApplicationList()}</div>
         </div>
     )
+  }
+
+  async changeApplyListState(l, s) {
+    const a = await axios.post(`${window.SERVER_ROOT_URL}/biz/relation/updateResult`, {
+      applyListId: l._id,
+      result: s,
+    });
+    this.queryListWithUser();
+  }
+
+  renderApplicationList() {
+    const {user} = this.props;
+    if (user && user.type === 2) {
+      const e = this.state.listWithUser.map((l) => {
+        const {userRef} = l;
+        return (
+            <div key={l._id}>
+              <span>{userRef.username},</span>
+              <span>{userRef.type === 0 ? 'Teen' : 'Volunteer'}</span>
+              {
+                l.result == 0? (
+                    <span>
+                      <button onClick={()=>{this.changeApplyListState(l, 1)}}>Confirm</button>
+                      <button onClick={()=>{this.changeApplyListState(l, 2)}}>Reject</button>
+                    </span>
+                ) : (
+                    <span>
+                      ,{this.applyResultToString(l.result)}
+                      </span>
+                )
+              }
+
+            </div>
+        )
+      });
+      return (
+          <div>
+            <div>Application List:</div>
+            {e}
+          </div>
+      );
+    } else {
+      return (
+          <div>
+          </div>
+      );
+    }
   }
 }
 
