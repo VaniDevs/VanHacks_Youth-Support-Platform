@@ -7,12 +7,18 @@ import {InputText} from 'primereact/inputtext';
 import {Button} from 'primereact/button';
 
 import ResultList from './ResultList'
-import './SearchHome.css'
+import './SearchHome.css';
+import {DataTable} from 'primereact/datatable';
 
 class SearchHomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {keyword: '', resources: []};
+    this.state = {
+      keyword: '',
+      resources: [],
+      layout: 'list'
+    };
+
   }
 
   async onSubmit() {
@@ -42,6 +48,7 @@ class SearchHomePage extends Component {
   }
 
   render() {
+    console.log(this.state.resources);
     return (
         <div className="search-home">
           <div className="introduction">
@@ -55,13 +62,22 @@ class SearchHomePage extends Component {
             <InputText className="search-keyword" value={this.state.keyword} onChange={this.onKeywordChange.bind(this)} />
             <Button  className="search-btn" label="Search" onClick={this.onSubmit.bind(this)}/>
           </div>
-          <ResultList
-              results={this.state.searchResults || []}
-          />
+
+          <div>
+
+
+          </div>
+          <div className={"result"}>
+            <ResultList
+                results={this.state.searchResults || []}
+            />
+          </div>
+
         </div>
     )
   }
 }
+
 
 
 export default SearchHomePage

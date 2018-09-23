@@ -21,6 +21,13 @@ class ResultList extends Component {
     });
     return (
         <div className="search-result-container">
+          <div className="search-result-row">
+            <div className={"search-column"}>Description</div>
+            <div className={"search-column"}>Location</div>
+            <div className={"search-column"}>Apply Deadline</div>
+            <div className={"search-column"}>Field</div>
+
+          </div>
           <div>{content}</div>
 
         </div>

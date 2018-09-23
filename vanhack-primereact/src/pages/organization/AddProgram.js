@@ -11,6 +11,8 @@ import {
 import {Button} from 'primereact/button';
 import {Calendar} from 'primereact/calendar';
 import {MultiSelect} from 'primereact/multiselect';
+import {Dropdown} from 'primereact/dropdown';
+
 
 
 class AddProgramPage extends Component {
@@ -144,7 +146,7 @@ class AddProgramPage extends Component {
             </li>
               <li>
                 <label for="bio">Program types</label>
-                <MultiSelect className={"types"} value={this.state.field} options={this.const.fields} onChange={(e) => this.setState({field: e.value})} />
+                <Dropdown className={"types"} value={this.state.field} options={this.const.fields} onChange={(e) => this.setState({field: e.value})} />
                 <span className={"span"}>Enter the types of your programs</span>
               </li>
               <li>

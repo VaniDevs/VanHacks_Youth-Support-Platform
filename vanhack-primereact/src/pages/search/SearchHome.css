@@ -2,7 +2,7 @@
     padding-left: 20px;
     padding-top: 200px;
     /*width: 100%;*/
-    margin-bottom: 20px;
+
 
 }
 .search-home .search-btn {
@@ -20,4 +20,10 @@
     font-size: 20px;
     height: 40px;
     border: #008fba 3px double;
+}
+
+.search-home .result{
+    position: relative;
+    left:20%;
+    width: 60%;
 }
