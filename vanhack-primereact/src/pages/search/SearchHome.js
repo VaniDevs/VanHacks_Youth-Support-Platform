@@ -36,7 +36,7 @@ class SearchHomePage extends Component {
   render () {
     return (
         <div>
-          <div>One Punch - Youth Support</div>
+          <div className="introduction">One Punch - Youth Support</div>
           <div>
             <input type="text" onChange={this.onKeywordChange.bind(this)} value={this.state.keyword}/>
             <button className="btn btn-primary" onClick={this.onSubmit.bind(this)}>search</button>
