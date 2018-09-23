@@ -17,10 +17,14 @@ class SearchHomePage extends Component {
 
   async onSubmit() {
     console.log(this.state.keyword);
-    // this.props.searchResources();
-    const a = await axios.get(`${window.SERVER_ROOT_URL}/biz/program/search`);
-    // TODO handle error and zero result
-    this.setState({searchResults: a.data.programs});
+    if (!this.state.keyword) {
+      this.setState({searchResults: []});
+    } else {
+      const a = await axios.post(`${window.SERVER_ROOT_URL}/biz/program/search`, {
+        keyword: this.state.keyword
+      });
+      this.setState({searchResults: a.data.programs});
+    }
   }
 
   componentDidMount() {
