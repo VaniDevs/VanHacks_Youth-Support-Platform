@@ -6,6 +6,9 @@ import 'primereact/resources/themes/omega/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import SearchHomePage from './pages/search/SearchHome'
+import ResourceDetailPage from './pages/resource/ResourceDetail'
+import NewResourcePage from './pages/staff/NewResource'
+
 
 import { BrowserRouter, Route, Switch, HashRouter} from 'react-router-dom';
 
@@ -38,9 +41,8 @@ class App extends Component {
 
             <HashRouter>
               <Switch>
-                {/*<Route path="/resource/detail/:resourceId" component={ResourceDetailPage}/>*/}
-                {/*<Route path="/staff/newResource" component={NewResourcePage} />*/}
-                {/*<Route path="/home/search" component={SearchHomePage} />*/}
+                <Route path="/resource/detail/:resourceId" component={ResourceDetailPage}/>
+                <Route path="/staff/newResource" component={NewResourcePage} />
                 <Route path="/" component={SearchHomePage} />
               </Switch>
             </HashRouter>
