@@ -21,3 +21,19 @@
     font-size: 30px;
 
 }
+
+.apply-button{
+    position: relative;
+    left: 40%;
+    margin: 30px;
+    font-size: 30px;
+}
+
+.apply-message{
+    border: #757a86 2px solid;
+    padding: 5px;
+    font-size: 30px;
+    margin: 40px;
+    color: #757a86;
+
+}
