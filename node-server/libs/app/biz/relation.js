@@ -77,3 +77,47 @@ module.exports.checkRelation = {
     },
   ]
 };
+
+module.exports.updateResult = {
+  method: 'post',
+  middlewares: [
+    (req, res, next) => {
+      if (!req.$injection.user) {
+        next(new Error('User not logined'));
+        return;
+      }
+      // TODO verify organization
+      next();
+    },
+    (req, res, next) => {
+      const {applyListId} = req.body;
+      applyList.findOne({
+        _id: mongoose.Types.ObjectId(applyListId),
+      }, function (err, a) {
+        if (err) {
+          next(err);
+        } else if (!a) {
+          next(new Error('not found'));
+        } else {
+          req.$injection.a = a;
+          next();
+        }
+      });
+    },
+    (req, res, next) => {
+      const {a} = req.$injection;
+      const {result} = req.body;
+      a.result = result;
+      a.save(function (err) {
+        if (err) {
+          next(err);
+        } else {
+          res.$locals.writeData({
+            apply_list: a
+          });
+          next();
+        }
+      });
+    }
+  ]
+};
