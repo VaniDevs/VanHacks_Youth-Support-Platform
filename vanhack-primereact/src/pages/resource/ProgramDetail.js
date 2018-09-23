@@ -107,10 +107,7 @@ class ProgramDetailPage extends Component {
       if (user && user.type === 0) {
         return (
             <div>
-              <div className={"programRow"}>
-                <h3 className={"head-program-row"}>Application Requirement</h3>
-                <div>{this.renderApplicationList()}</div>
-              </div>
+
 
               <div>
                 <button onClick={this.onClickApply.bind(this)}>Apply For It!</button>

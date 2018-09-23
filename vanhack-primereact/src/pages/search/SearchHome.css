@@ -1,13 +1,23 @@
 .search-home .ui-container {
     padding-left: 20px;
-    padding-top: 20px;
+    padding-top: 200px;
     /*width: 100%;*/
     margin-bottom: 20px;
+
 }
 .search-home .search-btn {
     margin-left: 20px;
+    font-size: 25px;
+    background: #008fba;
+    border: #008fba 3px double;
 }
 
 .search-home .search-keyword {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    height: 30px;
     width: 50%;
+    font-size: 20px;
+    height: 40px;
+    border: #008fba 3px double;
 }
