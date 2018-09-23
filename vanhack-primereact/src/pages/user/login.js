@@ -4,8 +4,11 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import dot from 'dot-prop'
 import {Dialog} from 'primereact/dialog';
+import {
+  withRouter
+} from 'react-router-dom'
 
-export default class LoginPage extends Component {
+class LoginPage extends Component {
 
   constructor() {
     super();
@@ -44,7 +47,10 @@ export default class LoginPage extends Component {
       this.showAlert();
     } else {
       const user = dot.get(a, 'data.user');
-      console.log()
+      if (this.props.onLogin && user) {
+        this.props.onLogin(user);
+      }
+      this.props.history.push('/');
     }
   }
 
@@ -76,3 +82,5 @@ export default class LoginPage extends Component {
     );
   }
 }
+
+export default withRouter(LoginPage);

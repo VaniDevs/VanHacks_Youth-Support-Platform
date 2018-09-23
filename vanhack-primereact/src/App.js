@@ -29,6 +29,9 @@ class App extends Component {
     this.loadLogineduser();
   }
 
+  onUserLogin(u) {
+    this.setState({loginedUser: u});
+  }
   async loadLogineduser() {
     const a = await axios.get(`${window.SERVER_ROOT_URL}/biz/user/get`);
     // TODO handle error and zero result
@@ -67,7 +70,7 @@ class App extends Component {
             <Switch>
               <Route path="/resource/detail/:resourceId" component={ResourceDetailPage}/>
               <Route path="/staff/newResource" component={NewResourcePage}/>
-              <Route path="/user/login" component={LoginPage}/>
+              <Route path="/user/login" component={()=>{return <LoginPage onLogin={this.onUserLogin.bind(this)}/>}}/>
               <Route path="/user/register" component={RegisterPage}/>
               <Route path="/" component={SearchHomePage}/>
             </Switch>
