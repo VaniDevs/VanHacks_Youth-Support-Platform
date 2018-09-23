@@ -32,7 +32,7 @@ module.exports.queryOne = {
           next(err);
         } else {
           res.$locals.writeData({
-            resources: r
+            resource: r
           });
           next();
         }

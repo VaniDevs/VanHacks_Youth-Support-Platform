@@ -25,7 +25,7 @@ const generateInvokeNetworkCallback = function (request, callback) {
       window.alertify.error(response.data.err.message);
       callback && callback(response.data.err);
     } else {
-      callback && callback(null, response.data.data);
+      callback && callback(null, response.data);
     }
   })
       .catch((error) => {
@@ -87,6 +87,15 @@ export function searchResources(callback) {
   };
 }
 
+
+export function queryResource(resourceId, callback) {
+  const request = axios.get(`${ROOT_URL}/biz/resource/queryOne?id=` + resourceId);
+  generateInvokeNetworkCallback(request, callback);
+  return {
+    type: RESOURCE_SEARCH,
+    payload: request
+  };
+}
 
 // export function configQuery(callback) {
 //     const request = axios.get(`${ROOT_URL}/util/queryAllConfig`);
