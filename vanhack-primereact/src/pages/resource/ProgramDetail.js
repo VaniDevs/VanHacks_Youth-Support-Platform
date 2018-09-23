@@ -107,8 +107,16 @@ class ProgramDetailPage extends Component {
       if (user && user.type === 0) {
         return (
             <div>
-              <button onClick={this.onClickApply.bind(this)}>Apply For It!</button>
+              <div className={"programRow"}>
+                <h3 className={"head-program-row"}>Application Requirement</h3>
+                <div>{this.renderApplicationList()}</div>
+              </div>
+
+              <div>
+                <button onClick={this.onClickApply.bind(this)}>Apply For It!</button>
+              </div>
             </div>
+
         );
       } else if (user && user.type === 1) {
         return (
@@ -127,12 +135,39 @@ class ProgramDetailPage extends Component {
     // const { handleSubmit } = this.props;
     return (
         <div>
-          <h1>{this.state.program.name}</h1>
-          <div>{this.renderApplyBtn()}</div>
-          <div>
-            <p>{this.state.program.desc}</p>
+          <div className={"introduction"}>
+          <h1>Program details - {this.state.program.name}</h1>
+            <div>Details of the program</div>
           </div>
-          <div>{this.renderApplicationList()}</div>
+
+          <div className={"program"}>
+
+            <div className={"programRow"}>
+              <h3 className={"head-program-row"}>Program Name</h3>
+              <div>{this.state.program.name}</div>
+            </div>
+
+            <div className={"programRow"}>
+              <h3 className={"head-program-row"}>Program Description</h3>
+              <div>{this.state.program.desc}</div>
+            </div>
+
+            <div className={"programRow"}>
+              <h3 className={"head-program-row"}>Application Requirement</h3>
+              <div>{this.state.program.desc}</div>
+            </div>
+
+
+
+
+
+            <div>{this.renderApplyBtn()}</div>
+
+            <div></div>
+
+
+          </div>
+
         </div>
     )
   }

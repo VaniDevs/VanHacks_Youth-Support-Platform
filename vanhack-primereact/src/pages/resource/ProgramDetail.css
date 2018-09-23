@@ -1,0 +1,23 @@
+.program{
+    position:relative;
+    width: 70%;
+    left: 15%;
+    border: #03c4e8 3px solid;
+    margin: -2px 10px 10px 10px;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.programRow{
+    font-size: 30px;
+    font-family: Open Sans,Helvetica Neue,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 400;
+    color: #757a86;
+}
+
+.head-program-row{
+    color: #008fba;
+    font-size: 30px;
+
+}
