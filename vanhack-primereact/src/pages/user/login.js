@@ -18,14 +18,12 @@ class LoginPage extends Component {
       alertVisible: false,
 
     };
-    // this.state = {count: 0};
-    // this.increment = this.increment.bind(this);
   }
 
   // increment() {
   //     this.setState({count: this.state.count + 1});
   // }
-  onChange(e, key) {
+  onChangeText(e, key) {
     const c = {};
     c[key] = e.target.value;
     this.setState(c);
@@ -64,12 +62,14 @@ class LoginPage extends Component {
 
           <div>login page</div>
           <div>
-            <span>Username:</span>
+
             <div>
-              <input type="text" value={this.state.username} onChange={(e)=>{this.onChange(e, 'username')}} />
+              <span>Username:</span>
+              <input type="text" value={this.state.username} onChange={(e)=>{this.onChangeText(e, 'username')}} />
             </div>
             <div>
-              <input type="password" value={this.state.password} onChange={(e)=>{this.onChange(e, 'password')}}/>
+              <span>Password:</span>
+              <input type="password" value={this.state.password} onChange={(e)=>{this.onChangeText(e, 'password')}}/>
             </div>
           </div>
           <div>

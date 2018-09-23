@@ -52,6 +52,7 @@ class App extends Component {
               <span>
                 <Navigationitems
                     user={this.state.loginedUser}
+                    onClickLogout={()=>{this.onUserLogin()}}
                 />
               </span>
             </div>
