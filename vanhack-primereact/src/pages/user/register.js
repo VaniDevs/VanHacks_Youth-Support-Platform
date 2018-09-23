@@ -16,18 +16,68 @@ class RegisterPage extends Component {
       passwordAgain: "",
       type: 0,
       alertVisible: false,
+      name: "",
+      email: "",
+      phone: "",
+      birthday: null,
+      address: "",
+
 
       // teen
-      teen_school: ""
+      teen_school: "",
+      teen_gender: 0,
+      teen_education_level: 0,
+      teen_field: [],
 
+      // volunteer
+      volunteer_gender: 0,
+      volunteer_education_level: 0,
+      volunteer_field: [],
+      volunteer_available: [],
+
+      // organization
+      organization_location: '',
+      organization_web: '',
 
     };
   }
 
   async onClickSubmit() {
 
-  }
+    // TODO verify info
 
+    // TODO register here
+    const info = {
+      username: this.state.username,
+      password: this.state.password,
+      name: this.state.name,
+      email: this.state.email,
+      phone: this.state.phone,
+      birthday: this.state.birthday,
+      address: this.state.address,
+      type: this.state.type
+    };
+
+    if (this.state.type === 0) {
+      info.teenInfo = {
+        gender: this.state.teen_gender,
+        education_level: this.state.education_level,
+        school: this.state.teen_school,
+        field: this.state.teen_field,
+      };
+    } else if (this.state.type === 1) {
+      // TODO add volunteerInfo here
+      info.volunteerInfo = {
+
+      };
+    } else if (this.state.type === 2) {
+      // TODO add organizatinoInfo here
+      info.organizationInfo = {
+
+      };
+    }
+    console.log(info);
+  }
 
   onChangeText(e, key) {
     const c = {};
@@ -78,11 +128,12 @@ class RegisterPage extends Component {
 
   render() {
     const citySelectItems = [
-      {label: 'ten', value: 0},
+      {label: 'teen', value: 0},
       {label: 'Volunteer', value: 1},
       {label: 'Organization', value: 2},
     ];
 
+    // TODO name, email, phone, birthday, address
     return (
         <div>
           <div>

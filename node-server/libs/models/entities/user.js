@@ -18,14 +18,14 @@ var schema = Schema({
   address: String,
   type: Number, // 0 teen, 1 volunteer, 2 org
   teenInfo: {
-    gender: String,
+    gender: Number, // 0 MALE, 1 FEMALE
     education_level: Number, // 0: Pre-school 1:Primary School 2: Middle School 3: High School 4:College 5: Not educated
     low_income: Number, // 1. Confirmed 2. Not confirmed
     school: String,
     field: Number, //1. Scholarship 2.Mentor 3. Council 4.Food 5.Health 6. Sport
   },
   volunteerInfo: {
-    gender: String,
+    gender: Number,
     education_level: Number, // 0: Pre-school 1:Primary School 2: Middle School 3: High School 4:College 5: Not educated
     field:[Number], // 1. Administration/office work 2. Coaching/mentoring 3. Technical 4. Counselling/Listening 5. Events/Stewarding
     available:[Object],
@@ -37,13 +37,7 @@ var schema = Schema({
   }
 }, {
   timestamps: true
-})
-
-const GENDER_MALE = 'MALE'
-const GENDER_FEMALE = 'FEMALE'
-schema.statics.GENDER_MALE = GENDER_MALE
-schema.statics.GENDER_FEMALE = GENDER_FEMALE
-
+});
 
 
 module.exports = mongoose.model('user', schema);

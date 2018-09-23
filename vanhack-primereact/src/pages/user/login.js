@@ -75,7 +75,7 @@ class LoginPage extends Component {
           <div>
 
           </div>
-          <button onClick={()=>{this.onSubmit()}}>
+          <button onClick={()=>{this.onSubmit();}}>
             Login
           </button>
         </div>
