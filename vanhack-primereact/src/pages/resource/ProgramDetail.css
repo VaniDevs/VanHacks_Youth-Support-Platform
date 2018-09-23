@@ -19,5 +19,14 @@
 .head-program-row{
     color: #008fba;
     font-size: 30px;
+}
 
+.program-apply-text {
+    padding-top: 15px;
+    margin-right: 5px;
+}
+
+.program-apply-btn {
+    font-size: 14px;
+    margin-bottom: 10px;
 }
