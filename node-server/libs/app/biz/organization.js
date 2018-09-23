@@ -1,6 +1,8 @@
 
 const Program = require('../../models/entities/program')
 const emailHelper = require('../../utility/emailHelper')
+const User = require('../../models/entities/user')
+
 
 module.exports.addProgram = {
   method: 'post',
@@ -26,8 +28,24 @@ module.exports.addProgram = {
     (req, res, next) => {
       const program = req.$injection.program;
       res.$locals.writeData({program});
-      // TODO send email notification
-      emailHelper.sendEmail([{mails: 'wxy325@me.com', name:'wxy325'}], 'test title', 'test desc');
+      const targetField = program.field;
+
+      User.find({
+        type: 0,
+        'teenInfo.field': 0,
+      }, function (err, us) {
+        const a = us.filter((u)=>{
+          return u.email;
+        }).map((u)=>{
+          return {
+            mails: u.email,
+            name: u.name || u.username
+          }
+        });
+        console.log(us);
+        console.log(us);
+        emailHelper.sendTeenNotification(a, `<a href=http://localhost:3000/#/program/detail/${program._id}>${program.name}</a>`);
+      });
       next()
     }
   ]
