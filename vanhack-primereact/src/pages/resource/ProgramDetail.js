@@ -12,7 +12,7 @@ class ProgramDetailPage extends Component {
     this.state = {
       program: {},
       applyList: null,
-      listWithUser: []
+      listWithUser: [],
     };
 
   }
@@ -153,9 +153,37 @@ class ProgramDetailPage extends Component {
             </div>
 
             <div className={"programRow"}>
+              <h3 className={"head-program-row"}>Program Website</h3>
+              <div>{this.state.program.web}</div>
+            </div>
+
+            <div className={"programRow"}>
               <h3 className={"head-program-row"}>Application Requirement</h3>
               <div>{this.state.program.desc}</div>
             </div>
+
+            <div className={"programRow"}>
+              <h3 className={"head-program-row"}>Location</h3>
+              <div>{this.state.program.desc}</div>
+              {/*<img src={""}>Google Map</img>*/}
+            </div>
+
+            <div className={"programRow"}>
+              <h3 className={"head-program-row"}>Application Deadline</h3>
+              <div>{this.state.program.desc}</div>
+            </div>
+
+            <div className={"programRow"}>
+              <h3 className={"head-program-row"}>Positions Avaialble for teenage/students</h3>
+              <div>{this.state.program.desc}</div>
+            </div>
+
+            <div className={"programRow"}>
+              <h3 className={"head-program-row"}>Volunteers needed</h3>
+              <div>{this.state.program.desc}</div>
+            </div>
+
+
 
 
 
