@@ -28,6 +28,7 @@ class App extends Component {
       loginedUser: null
     };
   }
+
   componentDidMount() {
     this.loadLogineduser();
   }
@@ -35,6 +36,7 @@ class App extends Component {
   onUserLogin(u) {
     this.setState({loginedUser: u});
   }
+
   async loadLogineduser() {
     const a = await axios.get(`${window.SERVER_ROOT_URL}/biz/user/get`);
     // TODO handle error and zero result
@@ -50,32 +52,38 @@ class App extends Component {
           <div className="App">
             <AppHeader
                 user={this.state.loginedUser}
-                onClickLogout={()=>{this.onUserLogin()}}
+                onClickLogout={() => {
+                  this.onUserLogin()
+                }}
             />
-
-            <Switch>
-              <Route path="/program/detail/:resourceId" component={
-                (props)=>{
-                  const programId = props.match.params.resourceId;
-                  return (<ProgramDetailPage programId={programId} user={this.state.loginedUser}/>);
-                }
-              }/>
-              <Route path="/organization/add_program" component={AddProgramPage}/>
-              <Route path="/organization/my_program" component={
-                () => {
-                  return <MyProgramPage user={this.state.loginedUser}/>
-                }
-              }/>
-              <Route path="/user/login" component={()=>{return <LoginPage onLogin={this.onUserLogin.bind(this)}/>}}/>
-              <Route path="/user/register" component={()=>{return <RegisterPage onRegister={this.onUserLogin.bind(this)}/>}}/>
-              <Route path="/user/my_application" component={
-                () => {
-                  return <MyApplicationPage user={this.state.loginedUser}/>
-                }
-              }/>
-              <Route path="/" component={SearchHomePage}/>
-            </Switch>
-
+            <div className="main-container">
+              <Switch>
+                <Route path="/program/detail/:resourceId" component={
+                  (props) => {
+                    const programId = props.match.params.resourceId;
+                    return (<ProgramDetailPage programId={programId} user={this.state.loginedUser}/>);
+                  }
+                }/>
+                <Route path="/organization/add_program" component={AddProgramPage}/>
+                <Route path="/organization/my_program" component={
+                  () => {
+                    return <MyProgramPage user={this.state.loginedUser}/>
+                  }
+                }/>
+                <Route path="/user/login" component={() => {
+                  return <LoginPage onLogin={this.onUserLogin.bind(this)}/>
+                }}/>
+                <Route path="/user/register" component={() => {
+                  return <RegisterPage onRegister={this.onUserLogin.bind(this)}/>
+                }}/>
+                <Route path="/user/my_application" component={
+                  () => {
+                    return <MyApplicationPage user={this.state.loginedUser}/>
+                  }
+                }/>
+                <Route path="/" component={SearchHomePage}/>
+              </Switch>
+            </div>
           </div>
         </HashRouter>
     );
