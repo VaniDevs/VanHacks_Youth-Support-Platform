@@ -16,6 +16,7 @@ import dotProp from 'dot-prop'
 
 import {BrowserRouter, Route, Switch, HashRouter} from 'react-router-dom';
 
+axios.defaults.withCredentials = true;
 
 class App extends Component {
 

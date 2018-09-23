@@ -58,7 +58,7 @@ const _vendorMiddlewares = app => {
       url: db.url,
       ttl: 365 * 24 * 60 * 60 // = 365 days
     })
-  }))
+  }));
   // Body parser
   app.use((req, res, next) => {
     next()
