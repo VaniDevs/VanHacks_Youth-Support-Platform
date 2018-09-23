@@ -1,5 +1,5 @@
 # VanHacks_Youth-Support-Platform
-This is a platform designed for non-profit organization Weekend Fuebags, which is aimed to support the growth of poor teens and students
+This is a platform designed for non-profit organization Weekend Fuebags, which is aimed to support the growth of poor teens and students. We use React and Primie React UI library for front end. We use MongoDB and Express for back-end database and server.
 
 Register page: Three types of users -- Volunteers, Youths, Organizations can register
 ![Register page](https://github.com/VaniDevs/VanHacks_Youth-Support-Platform/blob/master/webpage/screen_shot/Register.png)
