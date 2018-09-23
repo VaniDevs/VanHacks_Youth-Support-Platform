@@ -15,19 +15,23 @@ export default class NavigationItems extends Component {
     if (user) {
       if (user.type === 0) {
         // Teens
-
         return (
             <span>
-            <button onClick={this.onClickLogout.bind(this)}>Logout</button>
-          </span>
+              <span>
+                <Link to="/user/my_application">My Application</Link>
+              </span>
+              <button onClick={this.onClickLogout.bind(this)}>Logout</button>
+            </span>
         );
       } else if (user.type === 1) {
         // Volunteer
-
         return (
             <span>
-            <button onClick={this.onClickLogout.bind(this)}>Logout</button>
-          </span>
+              <span>
+                <Link to="/user/my_applicationm">My Application</Link>
+              </span>
+              <button onClick={this.onClickLogout.bind(this)}>Logout</button>
+            </span>
         );
       } else if (user.type === 2) {
         // Organization

@@ -9,6 +9,7 @@ import SearchHomePage from './pages/search/SearchHome'
 import ProgramDetailPage from './pages/resource/ProgramDetail'
 import AddProgramPage from './pages/organization/AddProgram'
 import MyProgramPage from './pages/organization/MyProgram'
+import MyApplicationPage from './pages/user/MyApplication'
 import LoginPage from './pages/user/login'
 import RegisterPage from './pages/user/register'
 import AppHeader from './components/AppHeader'
@@ -60,9 +61,18 @@ class App extends Component {
                 }
               }/>
               <Route path="/organization/add_program" component={AddProgramPage}/>
-              <Route path="/organization/my_program" component={MyProgramPage}/>
+              <Route path="/organization/my_program" component={
+                () => {
+                  return <MyProgramPage user={this.state.loginedUser}/>
+                }
+              }/>
               <Route path="/user/login" component={()=>{return <LoginPage onLogin={this.onUserLogin.bind(this)}/>}}/>
               <Route path="/user/register" component={()=>{return <RegisterPage onRegister={this.onUserLogin.bind(this)}/>}}/>
+              <Route path="/user/my_application" component={
+                () => {
+                  return <MyApplicationPage user={this.state.loginedUser}/>
+                }
+              }/>
               <Route path="/" component={SearchHomePage}/>
             </Switch>
 
