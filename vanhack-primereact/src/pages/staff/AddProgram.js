@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
 // import { userLogin } from '../../actions/http/NetworkAction'
 // import {renderTextField} from '../../helper/FormHelper'
-import './NewResource.css'
+import './AddProgram.css'
 
 class NewResourcePage extends Component {
   constructor(props) {
