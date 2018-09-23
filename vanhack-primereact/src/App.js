@@ -7,7 +7,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import SearchHomePage from './pages/search/SearchHome'
 import ResourceDetailPage from './pages/resource/ResourceDetail'
-import NewResourcePage from './pages/staff/AddProgram'
+import AddProgramPage from './pages/organization/AddProgram'
 import LoginPage from './pages/user/login'
 import RegisterPage from './pages/user/register'
 import AppHeader from './components/AppHeader'
@@ -53,7 +53,7 @@ class App extends Component {
 
             <Switch>
               <Route path="/resource/detail/:resourceId" component={ResourceDetailPage}/>
-              <Route path="/staff/newResource" component={NewResourcePage}/>
+              <Route path="/organization/add_program" component={AddProgramPage}/>
               <Route path="/user/login" component={()=>{return <LoginPage onLogin={this.onUserLogin.bind(this)}/>}}/>
               <Route path="/user/register" component={()=>{return <RegisterPage onRegister={this.onUserLogin.bind(this)}/>}}/>
               <Route path="/" component={SearchHomePage}/>

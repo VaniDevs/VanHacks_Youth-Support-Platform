@@ -24,6 +24,7 @@ module.exports.addProgram = {
     (req, res, next) => {
       const program = req.$injection.program;
       res.$locals.writeData({program});
+      // TODO send email notification
       next()
     }
   ]
