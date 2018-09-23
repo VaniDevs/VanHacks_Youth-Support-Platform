@@ -8,6 +8,7 @@ import 'primeicons/primeicons.css';
 import SearchHomePage from './pages/search/SearchHome'
 import ProgramDetailPage from './pages/resource/ProgramDetail'
 import AddProgramPage from './pages/organization/AddProgram'
+import MyProgramPage from './pages/organization/MyProgram'
 import LoginPage from './pages/user/login'
 import RegisterPage from './pages/user/register'
 import AppHeader from './components/AppHeader'
@@ -59,6 +60,7 @@ class App extends Component {
                 }
               }/>
               <Route path="/organization/add_program" component={AddProgramPage}/>
+              <Route path="/organization/my_program" component={MyProgramPage}/>
               <Route path="/user/login" component={()=>{return <LoginPage onLogin={this.onUserLogin.bind(this)}/>}}/>
               <Route path="/user/register" component={()=>{return <RegisterPage onRegister={this.onUserLogin.bind(this)}/>}}/>
               <Route path="/" component={SearchHomePage}/>

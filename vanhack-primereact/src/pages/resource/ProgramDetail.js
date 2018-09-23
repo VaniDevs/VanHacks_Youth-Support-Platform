@@ -14,10 +14,14 @@ class ProgramDetailPage extends Component {
       applyList: null,
       listWithUser: []
     };
+
+  }
+  componentDidMount() {
     this.queryProgram();
     this.queryApplyList();
     this.queryListWithUser();
   }
+
 
   async queryListWithUser() {
     const {programId} = this.props;

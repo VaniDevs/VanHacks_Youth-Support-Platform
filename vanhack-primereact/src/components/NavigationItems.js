@@ -37,6 +37,9 @@ export default class NavigationItems extends Component {
               <span>
                 <Link to="/organization/add_program">Add Program</Link>
               </span>
+              <span>
+                <Link to="/organization/my_program">My Program</Link>
+              </span>
             <button onClick={this.onClickLogout.bind(this)}>Logout</button>
           </span>
         );
