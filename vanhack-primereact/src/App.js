@@ -52,7 +52,12 @@ class App extends Component {
             />
 
             <Switch>
-              <Route path="/program/detail/:resourceId" component={ProgramDetailPage}/>
+              <Route path="/program/detail/:resourceId" component={
+                (props)=>{
+                  const programId = props.match.params.resourceId;
+                  return (<ProgramDetailPage programId={programId} user={this.state.loginedUser}/>);
+                }
+              }/>
               <Route path="/organization/add_program" component={AddProgramPage}/>
               <Route path="/user/login" component={()=>{return <LoginPage onLogin={this.onUserLogin.bind(this)}/>}}/>
               <Route path="/user/register" component={()=>{return <RegisterPage onRegister={this.onUserLogin.bind(this)}/>}}/>

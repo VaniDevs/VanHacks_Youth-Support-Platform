@@ -17,6 +17,7 @@ module.exports.addProgram = {
     },
     (req, res, next) => {
       const info = req.body;
+      info.orgRef = req.$injection.user._id;
       const p = new Program(info);
       req.$injection.program = p;
       p.save(next);

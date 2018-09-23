@@ -1,31 +1,20 @@
-
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 // import { connect } from 'react-redux';
 import './ProgramDetail.css'
 import dot from 'dot-prop'
 import axios from 'axios'
 import {Dialog} from 'primereact/dialog';
 
-class ResourceDetailPage extends Component {
+class ProgramDetailPage extends Component {
   constructor(props) {
     super(props);
     this.state = {program: {}};
-
-    const { resourceId } = this.props.match.params;
-    console.log(resourceId)
-
-    // TODO query result
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // queryResource(resourceId, (err, r)=> {
-    //   console.log(err);
-    //   console.log(r);
-    // });
     this.queryProgram()
   }
+
   async queryProgram() {
-    const programId = this.props.match.params.resourceId;
+    const {programId} = this.props;
     const a = await axios.get(`${window.SERVER_ROOT_URL}/biz/program/queryOne?id=` + programId);
     const err = dot.get(a, 'data.err');
     console.log(a);
@@ -44,14 +33,41 @@ class ResourceDetailPage extends Component {
     // });
   }
 
-  render () {
-    // const { handleSubmit } = this.props;
+  onClickApply() {
 
+  }
+
+  onClickBeVolunteer() {
+
+  }
+
+  renderApplyBtn() {
+    const {user} = this.props;
+    if (user && user.type === 0) {
+      return (
+          <div>
+            <button onClick={this.onClickApply.bind(this)}>Apply For It!</button>
+          </div>
+      );
+    } else if (user && user.type === 1) {
+      return (
+          <div>
+            <button onClick={this.onClickBeVolunteer.bind(this)}>Be A Volunteer For It!</button>
+          </div>
+      );
+    } else {
+      return null;
+    }
+  }
+
+  render() {
+    // const { handleSubmit } = this.props;
     return (
         <div>
+          <h1>{this.state.program.name}</h1>
+          <div>{this.renderApplyBtn()}</div>
           <div>
-            <div>{this.state.program.name}</div>
-            <div>{this.state.program.desc}</div>
+            <p>{this.state.program.desc}</p>
           </div>
         </div>
     )
@@ -59,8 +75,7 @@ class ResourceDetailPage extends Component {
 }
 
 
-
-export default ResourceDetailPage;
+export default ProgramDetailPage;
 
 
 
