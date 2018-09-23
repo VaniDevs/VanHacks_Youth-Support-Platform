@@ -5,6 +5,7 @@ const mongoose = require('mongoose'),
 const schema = Schema({
   name: String,
   desc: String,
+  url: String,
   location: String,
   geo: {
     latitude: Number,

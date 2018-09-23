@@ -33,7 +33,7 @@ class AddProgramPage extends Component {
       position_volunteer: 0,
       contact_name: '',
       contact_phone: '',
-      field: 0,
+      field: [0],
     };
 
     this.const = {
@@ -54,7 +54,7 @@ class AddProgramPage extends Component {
   async submitBtnClicked() {
     // TODO verify input
     const {name, desc, location, geo, deadline, position_teen, position_volunteer, contact_name, contact_phone, field} = this.state;
-    const r = {name, desc, location, geo, deadline, position_teen, position_volunteer, field};
+    const r = {name, desc, location, geo, deadline, position_teen, position_volunteer, field: field[0] || 0};
     r.contact = {
       name: contact_name,
       phone: contact_phone
@@ -109,32 +109,32 @@ class AddProgramPage extends Component {
             <ul>
               <li>
                 <label for="name">Program Name</label>
-                <input type="text" name="name" maxlength="100"/>
+                <input type="text" name="name" maxlength="100" onChange={(e)=>{this.onChangeText(e, 'name')}}/>
                   <span className={"span"}>Enter your full name here</span>
               </li>
               <li>
                 <label for="email">Description</label>
-                <input type="email" name="email" maxlength="100"/>
+                <input type="text" name="email" maxlength="100" onChange={(e)=>{this.onChangeText(e, 'desc')}}/>
                   <span className={"span"}>Enter the description of your program</span>
               </li>
               <li>
                 <label for="url">Website</label>
-                <input type="url" name="url" maxlength="100"/>
+                <input type="url" name="url" maxlength="100" onChange={(e)=>{this.onChangeText(e, 'url')}}/>
                   <span className={"span"}>Your website address (eg: http://www.google.com)</span>
               </li>
               <li>
                 <label for="bio">Location</label>
-                <textarea name="bio" onkeyup="adjust_textarea(this)"></textarea>
+                <textarea name="bio" onkeyup="adjust_textarea(this)" onChange={(e)=>{this.onChangeText(e, 'location')}} ></textarea>
                 <span className={"span"}>Where is this location</span>
               </li>
               <li>
                 <label for="bio">Positions for young teenagers</label>
-                <textarea name="bio" onkeyup="adjust_textarea(this)"></textarea>
+                <textarea name="bio" onkeyup="adjust_textarea(this)" onChange={(e)=>{this.onChangeText(e, 'position_teen')}} ></textarea>
                 <span className={"span"}>Positions for young teenagers </span>
               </li>
               <li>
                 <label for="bio">Number of Volunteers</label>
-                <textarea name="bio" onkeyup="adjust_textarea(this)"></textarea>
+                <textarea name="bio" onkeyup="adjust_textarea(this)" onChange={(e)=>{this.onChangeText(e, 'position_volunteer')}} ></textarea>
                 <span className={"span"}>How many volunteers you need? 0 if you don't need volunteers</span>
               </li>
               <li>
