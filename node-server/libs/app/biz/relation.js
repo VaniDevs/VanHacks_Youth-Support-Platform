@@ -136,10 +136,15 @@ module.exports.queryUserList = {
       next();
     },
     (req, res, next) => {
-      const {programId} = req.body;
-      applyList.find({
-        programRef: mongoose.Types.ObjectId(programId),
-      }).populate('userRef').exec((err, lists) => {
+      const {programId, userId} = req.body;
+      const query = {};
+      if (programId) {
+        query.programRef =mongoose.Types.ObjectId(programId);
+      }
+      if (userId){
+        query.userRef =mongoose.Types.ObjectId(userId);
+      }
+      applyList.find(query).populate('userRef').populate('programRef').exec((err, lists) => {
         if (err) {
           next(err);
         } else {
