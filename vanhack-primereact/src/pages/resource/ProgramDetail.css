@@ -37,3 +37,13 @@
     color: #757a86;
 
 }
+
+.program-apply-text {
+    padding-top: 15px;
+    margin-right: 5px;
+}
+
+.program-apply-btn {
+    font-size: 14px;
+    margin-bottom: 10px;
+}

@@ -197,7 +197,7 @@ class ProgramDetailPage extends Component {
 
             <div>{this.renderApplyBtn()}</div>
 
-            <div></div>
+            <div>{this.renderApplicationList()}</div>
 
 
           </div>
@@ -221,13 +221,13 @@ class ProgramDetailPage extends Component {
         const {userRef} = l;
         return (
             <div key={l._id}>
-              <span>{userRef.username},</span>
-              <span>{userRef.type === 0 ? 'Teen' : 'Volunteer'}</span>
+              <span className="program-apply-text">{userRef.name || userRef.username}  </span>
+              <span className="program-apply-text">{userRef.type === 0 ? 'Student' : 'Volunteer'}</span>
               {
                 l.result == 0? (
                     <span>
-                      <button onClick={()=>{this.changeApplyListState(l, 1)}}>Confirm</button>
-                      <button onClick={()=>{this.changeApplyListState(l, 2)}}>Reject</button>
+                      <Button className='program-apply-btn' label="Confirm" onClick={()=>{this.changeApplyListState(l, 1)}}/>
+                      <Button className='program-apply-btn' label="Reject" onClick={()=>{this.changeApplyListState(l, 2)}} />
                     </span>
                 ) : (
                     <span>
@@ -239,10 +239,13 @@ class ProgramDetailPage extends Component {
             </div>
         )
       });
+
+
+
       return (
-          <div>
-            <div>Application List:</div>
-            {e}
+          <div className={"programRow"}>
+            <h3 className={"head-program-row"}>Application List:</h3>
+            <div>{e}</div>
           </div>
       );
     } else {
