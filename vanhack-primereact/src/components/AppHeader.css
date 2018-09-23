@@ -14,4 +14,36 @@
     color: white;
     -webkit-font-smoothing: antialiased;
     font-size: 14px;
+    text-align: left;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.app-header .header-item {
+
+}
+.app-header .app-title:visited {
+    color: white;
+}
+
+.app-header .app-title {
+    color: white;
+    font-size:30px;
+    text-decoration:none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+
+}
+.app-header .nav-item {
+    position: absolute;
+    right: 40px;
+    top: 20px;
+}
+
+.app-header .nav-item a{
+    text-decoration:none;
+    margin: 10px;
+}
+
+.app-header .nav-item a:visited {
+    color: white;
 }

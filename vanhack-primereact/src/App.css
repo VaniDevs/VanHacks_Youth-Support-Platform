@@ -20,11 +20,10 @@
   font-size: large;
 }
 
+
 .introduction {
   position: relative;
-  /*left: 100px;*/
-  width:100%;
-  /*top: 100px;*/
+  width:calc(100% - 60px);
   background-color: #008fba;
   background-image: linear-gradient(90deg,#008fba,#03c4e8);
   text-align: left;
