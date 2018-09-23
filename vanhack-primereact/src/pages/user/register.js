@@ -234,9 +234,6 @@ class RegisterPage extends Component {
           <Dialog header="Alert" visible={this.state.alertVisible} width="350px" modal={true} onHide={(e) => this.setState({alertVisible: false})}>
             Username or Password Error!
           </Dialog>
-
-
-
           <div className="introduction">
             <div className="feature-intro">
               <h1>Register</h1>

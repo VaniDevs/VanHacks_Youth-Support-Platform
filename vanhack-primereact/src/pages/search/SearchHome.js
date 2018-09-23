@@ -1,6 +1,4 @@
-
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 // import { connect } from 'react-redux';
 // import { searchResources } from '../../actions/http/NetworkAction'
 // import {clearSearchResults} from '../../actions/page/SearchHome'
@@ -19,12 +17,14 @@ class SearchHomePage extends Component {
     // this.props.searchResources();
     const a = await axios.get(`${window.SERVER_ROOT_URL}/biz/program/search`);
     // TODO handle error and zero result
-    this.setState({searchResults:a.data.programs});
+    this.setState({searchResults: a.data.programs});
   }
+
   componentDidMount() {
     // this.queryData();
     // this.props.clearSearchResults();
   }
+
   // async queryData() {
   //
   // }
@@ -33,10 +33,17 @@ class SearchHomePage extends Component {
       keyword: e.target.value
     });
   }
-  render () {
+
+  render() {
     return (
         <div>
-          <div className="introduction">One Punch - Youth Support</div>
+          <div className="introduction">
+            <div className="feature-intro">
+              <h1>Search</h1>
+              <p>Search for Our Program
+              </p>
+            </div>
+          </div>
           <div>
             <input type="text" onChange={this.onKeywordChange.bind(this)} value={this.state.keyword}/>
             <button className="btn btn-primary" onClick={this.onSubmit.bind(this)}>search</button>
@@ -48,7 +55,6 @@ class SearchHomePage extends Component {
     )
   }
 }
-
 
 
 export default SearchHomePage
