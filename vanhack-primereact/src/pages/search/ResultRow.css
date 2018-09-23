@@ -1,12 +1,19 @@
 .search-result-row {
     margin-top:10px;
     margin-bottom:10px;
+    font-size: 20px;
+    border-bottom: #dde3e6 1px solid;
 }
-.search-result-divider {
-    height: 1px;
-    width: 90%;
-    display: block;
-    background-color: lightgrey;
-    margin-top: 5px;
-    margin-bottom: 5px;
+
+.search-column{
+    width: 20%;
+    display: inline-block;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.title{
+    font-size: 30px;
+    color: #008fba;
+    padding: 10px;
 }
