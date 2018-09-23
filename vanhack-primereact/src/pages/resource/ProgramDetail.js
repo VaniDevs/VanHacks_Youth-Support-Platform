@@ -130,6 +130,12 @@ class ProgramDetailPage extends Component {
 
   render() {
     // const { handleSubmit } = this.props;
+
+    const options = {
+      center: {lat: 36.890257, lng: 30.707417},
+      zoom: 12
+    };
+
     return (
         <div>
           <div className={"introduction"}>
@@ -146,38 +152,40 @@ class ProgramDetailPage extends Component {
 
             <div className={"programRow"}>
               <h3 className={"head-program-row"}>Program Description</h3>
-              <div>{this.state.program.desc}</div>
+              <div>{this.state.program.desc || "We offer 100$ scholarship to each excellent students"}</div>
             </div>
 
             <div className={"programRow"}>
               <h3 className={"head-program-row"}>Program Website</h3>
-              <div>{this.state.program.web}</div>
+              <div>{this.state.program.url}</div>
             </div>
 
             <div className={"programRow"}>
               <h3 className={"head-program-row"}>Application Requirement</h3>
-              <div>{this.state.program.desc}</div>
+              <div>{this.state.program.requirement}</div>
             </div>
 
             <div className={"programRow"}>
               <h3 className={"head-program-row"}>Location</h3>
-              <div>{this.state.program.desc}</div>
-              {/*<img src={""}>Google Map</img>*/}
+              <div>{this.state.program.location}</div>
+              {this.state.program.geo_img? (
+                  <img src={this.state.program.geo_img} width="640" height="493"/>
+              ) : null}
             </div>
 
             <div className={"programRow"}>
               <h3 className={"head-program-row"}>Application Deadline</h3>
-              <div>{this.state.program.desc}</div>
+              <div>{this.state.program.deadline ? this.state.program.deadline.replace("T08:00:00.000Z", "") : ""}</div>
             </div>
 
             <div className={"programRow"}>
               <h3 className={"head-program-row"}>Positions Avaialble for teenage/students</h3>
-              <div>{this.state.program.desc}</div>
+              <div>{this.state.program.position_teen}</div>
             </div>
 
             <div className={"programRow"}>
               <h3 className={"head-program-row"}>Volunteers needed</h3>
-              <div>{this.state.program.desc}</div>
+              <div>{this.state.program.position_volunteer}</div>
             </div>
 
 
