@@ -9,7 +9,7 @@ export default class AppHeader extends Component {
         <div id="layout-topbar" className="app-header">
           <Link to="/" className="app-title">
             <span >
-              Youth Support Resource Search
+              Weeken Fuelbag Resource Platform
             </span>
           </Link>
 
